@@ -1,7 +1,50 @@
 parameters:
-#    insider_user.example.class: Insider\UserBundle\Example
+    security.user_checker.class: Insider\UserBundle\Security\InsiderUserChecker
 
 services:
-#    insider_user.example:
-#        class: %insider_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    insider_user.admin.user:
+        class: Insider\UserBundle\Admin\UserAdmin
+        arguments: [~, Insider\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Пользователи", label: "Пользователи", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [InsiderUserBundle]]
+
+    insider_user.admin.role:
+        class: Insider\UserBundle\Admin\RoleAdmin
+        arguments: [~, Insider\UserBundle\Entity\Role, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Пользователи", label: "Роли", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [InsiderUserBundle]]
+
+    insider_user.admin.access_by_module:
+        class: Insider\UserBundle\Admin\AccessByModuleAdmin
+        arguments: [~, Insider\UserBundle\Entity\AccessByModule, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: AccessByModule, show_in_dashboard: false, label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [InsiderUserBundle]]
+
+    insider_user.registration.form.type:
+        class: Insider\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: allby_user_registration}
+
+    insider_user.provider:
+        class: Insider\UserBundle\Security\InsiderUserProvider
+        arguments: [@fos_user.user_manager, {facebook: facebookId,vkontakte: vkontakteId,odnoklassniki: odnoklassnikiId}]
+
+    insider_user.unique_login_validator:
+        class: Insider\UserBundle\Validator\Constraints\UniqueLoginValidator
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - {name: validator.constraint_validator, alias: validator_uniquelogin}
+
+    insider_user.authentication.handler:
+         class: Insider\UserBundle\Handler\InsiderAuthenticationHandler
+         arguments: [@service_container]
+
+    security.user_checker:
+         class: %security.user_checker.class%
