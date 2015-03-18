@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    {% for accessByModule in object.getAccessByModules %}
+        <div>{{ accessByModule.getModule }} : {{ accessByModule.getAccess }}</div>
+    {% endfor %}
+{% endblock %}

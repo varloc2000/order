@@ -1,0 +1,37 @@
+parameters:
+    # Database
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: allby
+    database_adv_name: allby_adv
+    database_user: root
+    database_password: root
+    # Mailer
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    # Other
+    locale: ru
+    secret: ThisTokenIsNotSoSecretChangeIt
+    # Recaptcha
+    recaptcha_public_key:   6LdclvASAAAAAEp5un3GH8iDPH7S7zAX9f498wjw
+    recaptcha_private_key:  6LdclvASAAAAAOy1glXhe4lXPLWyTvRsIfPO-nnr
+    # memcache
+    session_memcached_host: localhost
+    session_memcached_port: 11211
+    session_memcached_prefix: sess_
+    session_memcached_expire: 86400
+    site_host: site-example.com
+    elastica_host: localhost
+    elastica_port: 9200
+
+# Socials
+    facebook_app_id: 603706293109119
+    facebook_secret: a4bd886ef507f0208cf9874014004ba3
+    vk_app_id: 4740068
+    vk_secret: O4L9cqT44jsyVNzXjV5X
+    odnoklassniki_app_id: 1119974400
+    odnoklassniki_secret: 86A4CFE5A1F3B09D0F6D5517
+

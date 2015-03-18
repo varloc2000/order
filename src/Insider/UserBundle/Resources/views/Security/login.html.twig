@@ -1,0 +1,59 @@
+{% extends "InsiderUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div id="container">
+        <div class="article">
+            <div class="block-content-wrapper">
+                <div class="block-content text-center">
+                    <div class="login">
+                        {% if error %}
+                            <div style="color: #ff0000">{{ error|trans({}, 'FOSUserBundle') }}</div>
+                        {% endif %}
+                        <form class="form" action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <input type="hidden" name="_redirect_path" value="{{ app.request.query.get('redirect_url')|default('') }}" />
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="_username"
+                                    value="{{ last_username }}"
+                                    required="required"
+                                    class="form-control"
+                                    placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="_password"
+                                    required="required"
+                                    class="form-control"
+                                    placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}"
+                                >
+                            </div>
+                            <p class="remember_me">
+                                <label>
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                    {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                                </label>
+                            </p>
+                            <div class="form-group">
+                                <input
+                                    type="submit"
+                                    id="_submit"
+                                    name="_submit"
+                                    class="form-control btn btn-primary"
+                                    value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"
+                                />
+                            </div>
+                            <a href="{{ path('fos_user_resetting_request') }}">Забыли пароль?</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}

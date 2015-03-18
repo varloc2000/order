@@ -1,0 +1,23 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <section class="container">
+        <div class="login">
+            <h1>Профиль</h1>
+            <div class="fos_user_user_show">
+                <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+                <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+                <p>{{ 'Поледний раз входили'|trans({}, 'FOSUserBundle') }}: {{ user.lastLogin| date() }}</p>
+                {% if user.facebookId is not empty %}
+                    <p>{{ 'Зарегистрирован через социальную сеть Facebook. ID' }}: {{ user.facebookId }}</p>
+                {% endif %}
+                {% if user.vkontakteId is not empty %}
+                    <p>{{ 'Зарегистрирован через социальную сеть ВКонтакте. ID' }}: {{ user.vkontakteId }}</p>
+                {% endif %}
+                {% if user.odnoklassnikiId is not empty %}
+                    <p>{{ 'Зарегистрирован через социальную сеть Одноклассники. ID' }}: {{ user.odnoklassnikiId }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock fos_user_content %}

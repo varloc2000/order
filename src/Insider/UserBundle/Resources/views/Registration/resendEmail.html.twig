@@ -1,0 +1,30 @@
+{% extends "InsiderUserBundle::layout.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+{% endblock javascripts %}
+
+{% block fos_user_content %}
+<section class="container">
+    <div class="login">
+        <h1>Повторная отправка письма</h1>
+        <div style="color: darkgreen">Вы зарегистрированы на сайте, но, к сожлению, не подтверили свой аккаунт перейдя по ссылке в письме.Вы можете выслать это письмо заново.</div>
+        <form action="{{ path('resend_confirm') }}" method="POST" class="fos_user_resetting_request">
+            <div>
+                <div style="color: #ff0000">
+                    {{ form_errors(form) }}
+                    {{ form_errors(form.recaptcha) }}
+                    {{ form_errors(form.username) }}
+                </div>
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username) }}
+                {{ form_widget(form.recaptcha) }}
+            </div>
+            <div>
+                <input type="submit" value="{{ 'resend.email.submit'|trans({}, 'InsiderUserBundle') }}" />
+            </div>
+        {{ form_end(form) }}
+    </div>
+</section>
+{% endblock fos_user_content %}

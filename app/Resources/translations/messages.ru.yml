@@ -1,0 +1,28 @@
+breadcrumb:
+    link_main_page_list: Список главных страниц
+
+filter:
+    label_status: Статус
+    label_user: Пользователь
+    label_updated_by: Обновлено пользователем
+    label_created_at: Создано
+    label_updated_at: Обновлено
+
+list:
+    label_id: ID
+    label_created_at: Создано
+    label_updated_at: Обновлено
+    label_status: Статус
+    label_user: Пользователь
+    label_updated_by: Кем обновлено
+    label__action: Действия
+    action:
+        copy: Копировать
+
+status:
+    active: Активный
+    not_active: Не активный
+    deleted: Удаленный
+
+flash:
+    copied_success: Успешно скопировано!

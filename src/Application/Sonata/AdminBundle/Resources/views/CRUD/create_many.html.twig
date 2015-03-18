@@ -1,0 +1,45 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/admin/vendor/jQuery-File-Upload-9.5.4/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('bundles/admin/vendor/jQuery-File-Upload-9.5.4/js/jquery.fileupload.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            var uploader = new AllBy.MediaCollectionUploader(
+                '.jquery-file-upload',
+                '{{ form.vars.id }}',
+                {{ admin.generateUrl('upload') | json_encode | raw }}
+            );
+
+            uploader.init();
+        });
+    </script>
+{% endblock javascripts %}
+
+{% block form %}
+    {% form_theme form.media_collection 'SonataAdminBundle:Core:media_collection_field.html.twig' %}
+
+    <form class="form-horizontal"
+        action="{{ admin.generateUrl('create_many') }}" {{ form_enctype(form) }}
+        method="POST"
+        {% if not admin_pool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+    >
+        <div class="tabbable">
+            <div class="tab-content" style="margin-top: 20px">
+                <p class="help-block">
+                    <i class="fa fa-info"></i>
+                    {{ 'media_collection_help_message'|trans({}, 'SonataAdminBundle') }}
+                </p>
+                {{ form_widget(form) }}
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="well well-small form-actions">
+            <input type="submit" class="btn btn-primary" name="btn_create_and_list" value="{{ 'btn_save_and_return_to_list'|trans({}, 'SonataAdminBundle') }}">
+        </div>
+    </form>
+{% endblock form %}
+

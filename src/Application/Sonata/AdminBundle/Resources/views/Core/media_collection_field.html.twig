@@ -1,0 +1,150 @@
+{# Custom media collection widget #}
+{% block collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+
+        {# Collection add btn #}
+        {% if form.vars.allow_add %}
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <a
+                        href="#"
+                        data-collection-button="add"
+                        data-collection="collection-{{ form.vars.name }}"
+                        style="display: none;"
+                        title="{{ 'link_action_create_many_add'|trans({}, 'SonataAdminBundle') }}"
+                    ><i class="fa fa-plus-square-o"></i>
+                        {{ 'link_action_create_many_add'|trans({}, 'SonataAdminBundle') }}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+        {# Collection body #}
+        <div class="row" id="collection-{{ form.vars.name }}" {{ block('widget_container_attributes') }}>
+            {% for child in form|reverse %}
+                {{ _self.collection_item(child, form.vars|merge({'disabled': true}), form.parent.vars.admin) }}
+            {% endfor %}
+        </div>
+
+        {{ block('collection_script') }}
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_script %}
+    <script>
+        (function($) {
+            $(document).ready(function() {
+
+                {# Collection add btn script #}
+                {% if form.vars.allow_add %}
+                $('a[data-collection-button="add"]').show();
+
+                $(document).on('click', 'a[data-collection-button="add"]', function(e) {
+                    e.preventDefault();
+
+                    var collectionContainer = $('#' + $(this).data('collection'));
+                    var prototype = collectionContainer.data('prototype');
+                    var item = prototype.replace(/__name__/g, collectionContainer.children().length);
+
+                    collectionContainer.prepend(item);
+                });
+                {% endif %}
+
+                {# Collection delete btn script #}
+                {% if form.vars.allow_delete %}
+                $(document).on('click', 'a[data-collection-button="delete"]', function(e) {
+                    if ('#' == $(this).attr('href')) {
+                        e.preventDefault();
+
+                        console.log($(this).closest('#' + $(this).data('dismiss')));
+                        var item = $(this).closest('#' + $(this).data('dismiss'));
+                        item.remove();
+                    }
+                });
+                {% endif %}
+            });
+        })(jQuery);
+    </script>
+{% endblock collection_script %}
+
+{% block collection_item_widget %}
+    {% spaceless %}
+        {{ _self.collection_item(prototype, form.vars, form.parent.vars.admin) }}
+    {% endspaceless %}
+{% endblock collection_item_widget %}
+
+{% macro collection_item(form, options, admin) %}
+    <div class="col-xs-4" id="collection-item-{{ form.vars.name }}">
+        <div class="panel panel-default" style="margin-bottom: 0;">
+            {# Progress bar for ajax uploading #}
+            <div id="progress-{{ form.file.vars.id }}" class="progress progress-striped active text-center">
+                <div class="progress-bar progress-bar-success"></div>
+                <div class="uploaded-size text-success bg-success" style="display: {{ form.id.vars.value is empty ? 'none' : 'block' }};">
+                    {{ 'media_collection_uploaded'|trans({}, 'SonataAdminBundle') }}
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="panel-body">
+                {# Errors while ajax uploading #}
+                <div id="errors-{{ form.file.vars.id }}" class="form-errors text-danger">
+                    {{ form_errors(form.id) }}
+                </div>
+
+                {# hidden field with uploaded file id #}
+                {{ form_widget(form.id) }}
+
+                {{ form_label(form.language) }}
+                {% set inputParams = {'attr': {'class': 'form-control'}} %}
+                {{ form_widget(form.language, inputParams) }}
+
+                {{ form_label(form.file) }}
+
+                {% set disabledOpt = true == options.disabled ? {disabled: 'disabled'} : {} %}
+                {{ form_widget(form.file, {
+                    'attr': {
+                    'class': 'jquery-file-upload form-control',
+                    'data-name': form.file.vars.name
+                    }|merge(disabledOpt)})
+                }}
+            </div>
+        </div>
+        <p id="uploaded-{{ form.file.vars.id }}">
+            {# Uploaded file show link #}
+            <a
+                {% if form.id.vars.value and form.id.vars.errors|length == 0 %}
+                    href="{{ admin.generateUrl('delete', {id: form.id.vars.value}) }}"
+                {% else %}
+                    href="#"
+                    style="display: none;"
+                {% endif %}
+                data-href="{{ admin.generateUrl('show', {id: '__id__'}) }}"
+                target="_blank"
+                class="show-link pull-left"
+            ><i class="fa fa-eye"></i>
+                {{ 'link_action_show'|trans({}, 'SonataAdminBundle') }}
+            </a>
+
+            {# Collection delete btn #}
+            {% if options.allow_delete %}
+                <a
+                    {% if form.id.vars.value and form.id.vars.errors|length == 0 %}
+                        href="{{ admin.generateUrl('delete', {id: form.id.vars.value}) }}"
+                    {% else %}
+                        href="#"
+                    {% endif %}
+                    data-href="{{ admin.generateUrl('delete', {id: '__id__'}) }}"
+                    class="delete-link pull-right"
+                    data-collection-button="delete"
+                    data-dismiss="collection-item-{{ form.vars.name }}"
+                    title="{{ 'link_action_create_many_delete'|trans({}, 'SonataAdminBundle') }}"
+                ><i class="fa fa-minus-square-o"></i>
+                    {{ 'link_action_create_many_delete'|trans({}, 'SonataAdminBundle') }}
+                </a>
+            {% endif %}
+        </p>
+    </div>
+{% endmacro collection_item %}
+{# End Custom media collection widget #}

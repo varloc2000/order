@@ -1,0 +1,51 @@
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+    {#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+    {#<title>An Error Occurred: {{ status_text }}</title>#}
+{#</head>#}
+{#<body>#}
+{#<h1>Oops! An Error Occurred</h1>#}
+{#<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Ошибка: {{ status_text }}</title>
+    <meta name="description" content="{% block meta_description 'AllBY Description' %}">
+    <link rel="stylesheet" href="{{ asset('bundles/allbyfrontend/css/style.css') }}"/>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+    <!-- Static navbar -->
+    <div class="all-navbar navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <ul class="list-inline list-unstyled">
+                    <li>
+                        <a href="{{ path('all_by_frontend_homepage') }}" class="all-logo"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 85px;">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body text-center">
+                    <h1 class="text-success">{{ status_code }}</h1>
+                    <p>{{ status_text }}</p>
+                    <p><a class="btn btn-primary btn-lg" href="{{ path('all_by_frontend_homepage') }}" role="button">Начните с главной</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

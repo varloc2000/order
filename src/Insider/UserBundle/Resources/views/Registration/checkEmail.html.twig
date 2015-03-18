@@ -1,0 +1,18 @@
+{% extends "InsiderUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'InsiderUserBundle' %}
+
+{% block fos_user_content %}
+    <div id="container">
+        <div class="{{ full }} article">
+            <div class="block-content-wrapper">
+                <div class="block-content text-center">
+                    <h1>Регистрация</h1>
+                    <div class="form-group">
+                        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

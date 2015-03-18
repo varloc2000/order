@@ -1,0 +1,42 @@
+{% if admin.datagrid.filters %}
+    {% form_theme form with "SonataAdminBundle:Form:filter_admin_fields.html.twig" %}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="cursor: pointer;">
+            <h4 class="panel-title filter_legend {{ admin.datagrid.hasActiveFilters ? 'active' : 'inactive' }}">{{ 'label_filters'|trans({}, 'SonataAdminBundle') }} видео</h4>
+        </div>
+
+        <div class="panel-body">
+            <form class="sonata-filter-form {{ admin.isChild and 1 == admin.datagrid.filters|length ? 'hide' : '' }}" action="" method="GET" role="form">
+                {{ form_errors(form) }}
+                <div class="filter_container {{ admin.datagrid.hasActiveFilters ? 'active' : 'inactive' }}">
+                    {% for filter in admin.datagrid.filters %}
+                        <div class="form-group">
+                            <label for="{{ form.children[filter.formName].children['value'].vars.id }}">{{ admin.trans(filter.label, {}, filter.translationDomain) }}</label>
+                            {% set attr = form.children[filter.formName].children['type'].vars.attr|default({}) %}
+                            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' sonata-filter-option')|trim}) %}
+
+                            {{ form_widget(form.children[filter.formName].children['type'], {'attr':  attr}) }}
+
+                            {{ form_widget(form.children[filter.formName].children['value']) }}
+                        </div>
+                    {% endfor %}
+
+                    <input type="hidden" name="filter[_page]" id="filter__page" value="1">
+
+                    {% set foo = form.children['_page'].setRendered() %}
+                    {{ form_rest(form) }}
+
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> {{ 'btn_filter'|trans({}, 'SonataAdminBundle') }}</button>
+
+                    {% block reset_button %}
+                    <a class="btn btn-default" href="{{ admin.generateUrl('list', {filters: 'reset'}) }}">{{ 'link_reset_filter'|trans({}, 'SonataAdminBundle') }}</a>
+                    {% endblock reset_button %}
+                </div>
+
+                {% for paramKey, paramValue in admin.persistentParameters %}
+                    <input type="hidden" name="{{ paramKey }}" value="{{ paramValue }}">
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+{% endif %}

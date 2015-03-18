@@ -1,0 +1,26 @@
+<project name="fw" default="update">
+    <target name="update">
+        <exec command="git pull origin master" checkreturn="true" logoutput="true" />
+        <exec command="php app/console doctrine:schema:update --force" checkreturn="true" logoutput="true" />
+        <exec command="php app/console assets:install web/" checkreturn="true" logoutput="true" />
+        <exec command="php app/console cache:clear --env=prod" />
+        <exec command="php app/console assetic:dump --env=prod --no-debug" checkreturn="true" logoutput="true" />
+        <exec command="php app/console cache:clear --env=dev" />
+    </target>
+    <target name="update_all">
+        <exec command="git pull all master" checkreturn="true" logoutput="true" />
+        <exec command="php app/console doctrine:schema:update --force" checkreturn="true" logoutput="true" />
+        <exec command="php app/console assets:install web/" checkreturn="true" logoutput="true" />
+        <exec command="php app/console cache:clear --env=prod" />
+        <exec command="php app/console assetic:dump --env=prod --no-debug" checkreturn="true" logoutput="true" />
+        <exec command="php app/console cache:clear --env=dev" />
+    </target>
+    <target name="test">
+        <exec command="phpunit -c app" checkreturn="true" logoutput="true" />
+    </target>
+    <target name="assets">
+        <property name="path" value="src/AllBY/FrontendBundle/Resources/public/css" />
+        <exec command="lessc -x ${path}/style.less > ${path}/style.css" checkreturn="true" logoutput="true" />
+        <exec command="php app/console assets:install --symlink" checkreturn="true" logoutput="true" />
+    </target>
+</project>
