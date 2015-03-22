@@ -63,23 +63,39 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $RoleClient = new Role();
         $RoleClient->setName('Клиент');
         $RoleClient->setParentRole(Role::ROLE_CLIENT);
+        $this->setReference('client_role', $RoleClient);
         $manager->persist($RoleClient);
     }
 
     public function loadUser(ObjectManager $manager)
     {
-        $User = new User();
-        $User->setEmail("varloc2000@gmail.com");
-        $User->setPlainPassword("123123");
-        $User->setSuperAdmin(true);
-        $User->setUsername("admin");
-        $User->setEnabled(true);
-        $User->setRole($this->getReference('admin_role'));
-        $User->setStatus(User::STATUS_CHECKED);
+        $admin = new User();
+        $admin->setEmail("varloc2000@gmail.com");
+        $admin->setPlainPassword("123123");
+        $admin->setSuperAdmin(true);
+        $admin->setUsername("admin");
+        $admin->setEnabled(true);
+        $admin->setRole($this->getReference('admin_role'));
+        $admin->setStatus(User::STATUS_CHECKED);
+        $admin->setPromo($this->generatePromoCode());
 
-        $this->addReference('user', $User);
+        $this->addReference('admin', $admin);
 
-        $manager->persist($User);
+        $manager->persist($admin);
+
+        $client = new User();
+        $client->setEmail("prikritie@gmail.com");
+        $client->setPlainPassword("123123");
+        $client->setSuperAdmin(true);
+        $client->setUsername("client");
+        $client->setEnabled(true);
+        $client->setRole($this->getReference('client_role'));
+        $client->setStatus(User::STATUS_CHECKED);
+        $client->setPromo($this->generatePromoCode());
+
+        $this->addReference('client', $client);
+
+        $manager->persist($client);
     }
 
     public function loadModule(ObjectManager $manager)
@@ -88,7 +104,26 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $ModuleVideo->setName('Заказ');
         $ModuleVideo->setCode('ORDER');
 
+        $ModuleVideo = new Module();
+        $ModuleVideo->setName('Пользователи');
+        $ModuleVideo->setCode('USER');
+
         $manager->persist($ModuleVideo);
+    }
+
+    /**
+     * @return string
+     */
+    protected function generatePromoCode()
+    {
+        $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $res = "";
+
+        for ($i = 0; $i < 10; $i++) {
+            $res .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+
+        return $res;
     }
 
     /**

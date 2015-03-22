@@ -1,0 +1,19 @@
+parameters:
+#    insider_order.example.class: Insider\OrderBundle\Example
+
+services:
+    insider_order.admin.order_category:
+        class: Insider\OrderBundle\Admin\OrderCategoryAdmin
+        arguments: [~, Insider\OrderBundle\Entity\OrderCategory, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Категории", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [InsiderOrderBundle]]
+
+    insider_order.admin.order:
+        class: Insider\OrderBundle\Admin\OrderAdmin
+        arguments: [~, Insider\OrderBundle\Entity\Order, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Заказы", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [InsiderOrderBundle]]

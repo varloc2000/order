@@ -11,10 +11,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 //use AllBY\BaseBundle\Entity\Interfaces\SoftDeleteInterface;
 
 /**
- * Пользователь
- *
  * @ORM\Entity(repositoryClass="Insider\UserBundle\Entity\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Table(
+ *     name="user",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="promo", columns={"promo"}) }
+ * )
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(
  *     fields={"email"},
@@ -43,6 +44,41 @@ class User extends BaseUser
      * })
      */
     private $role;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $city;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $phone;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $skype;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $vk;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $additional;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $promo;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    protected $balance = 0;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -94,6 +130,11 @@ class User extends BaseUser
      */
     protected $uploadedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Insider\OrderBundle\Entity\Order", mappedBy="user")
+     */
+    private $orders;
+
     private static $statusNames = array(
         self::STATUS_REGISTERED => "Зарегистрирован",
         self::STATUS_CHECKED    => "Проверен",
@@ -106,20 +147,20 @@ class User extends BaseUser
         return self::$statusNames;
     }
 
-    public function setStatus($status)
-    {
-        if (!in_array($status, array( self::STATUS_REGISTERED, self::STATUS_CHECKED, self::STATUS_BLOCKED, self::STATUS_DELETED ))) {
-            throw new \InvalidArgumentException("Введен не корректный статус");
-        }
-        $this->status = $status;
-    }
-
     public function __construct()
     {
         parent::__construct();
         $this->setCreatedAt( new \DateTime() );
         $this->status = self::STATUS_REGISTERED;
         $this->enabled = true;
+    }
+
+    public function setStatus($status)
+    {
+        if (!in_array($status, array( self::STATUS_REGISTERED, self::STATUS_CHECKED, self::STATUS_BLOCKED, self::STATUS_DELETED ))) {
+            throw new \InvalidArgumentException("Введен не корректный статус");
+        }
+        $this->status = $status;
     }
 
     /**
@@ -150,6 +191,117 @@ class User extends BaseUser
             $this->enabled = true;*/
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAdditional()
+    {
+        return $this->additional;
+    }
+
+    /**
+     * @param mixed $additional
+     */
+    public function setAdditional($additional)
+    {
+        $this->additional = $additional;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    /**
+     * @param mixed $balance
+     */
+    public function setBalance($balance)
+    {
+        $this->balance = $balance;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param mixed $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param mixed $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPromo()
+    {
+        return $this->promo;
+    }
+
+    /**
+     * @param mixed $promo
+     */
+    public function setPromo($promo)
+    {
+        $this->promo = $promo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    /**
+     * @param mixed $skype
+     */
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVk()
+    {
+        return $this->vk;
+    }
+
+    /**
+     * @param mixed $vk
+     */
+    public function setVk($vk)
+    {
+        $this->vk = $vk;
+    }
 
     /**
      * Set createdAt

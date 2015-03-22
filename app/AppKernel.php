@@ -33,6 +33,8 @@ class AppKernel extends Kernel
             new Application\FOS\UserBundle\UserBundle(),
             new Application\Sonata\AdminBundle\AdminBundle(),
             new Insider\UserBundle\InsiderUserBundle(),
+            new Insider\OrderBundle\InsiderOrderBundle(),
+            new Insider\CurrencyBundle\InsiderCurrencyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

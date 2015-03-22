@@ -1,9 +1,7 @@
 AllBY\UserBundle\Entity\User:
     constraints:
-      - AllBY\UserBundle\Validator\Constraints\UniqueLogin: ~
+      - Insider\UserBundle\Validator\Constraints\UniqueLogin: ~
     properties:
-        username:
-            - AllBY\UserBundle\Validator\Constraints\FuckLogin: ~
         email:
             - Email:
                 message: 'Неверный формат email.'
@@ -13,16 +11,13 @@ FOS\UserBundle\Model\User:
          - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: [email]
             message: 'Такой email уже используется!'
-            groups: [AllBYRegistration]
-         - AllBY\UserBundle\Validator\Constraints\UniqueLogin:
-             groups: [AllBYRegistration]
+            groups: [InsiderRegistration]
+         - Insider\UserBundle\Validator\Constraints\UniqueLogin:
+             groups: [InsiderRegistration]
     properties:
-        username:
-            - AllBY\UserBundle\Validator\Constraints\FuckLogin:
-                groups: [AllBYRegistration]
         email:
             - NotBlank:
-                groups: [AllBYRegistration]
+                groups: [InsiderRegistration]
             - Email:
                 message: 'Неверный формат email.'
-                groups: [AllBYRegistration]
+                groups: [InsiderRegistration]

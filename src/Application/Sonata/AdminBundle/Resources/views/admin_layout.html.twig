@@ -54,25 +54,14 @@ file that was distributed with this source code.
         <link rel="stylesheet" href="{{ asset('bundles/admin/css/bootstrap.css') }}" media="all">
         <link rel="stylesheet" href="{{ asset('bundles/admin/css/chosen.min.css') }}" media="all">
         <link rel="stylesheet" href="{{ asset('bundles/admin/css/bootstrap-tokenfield.min.css') }}" media="all">
-        {#<link rel="stylesheet" href="{{ asset('bundles/admin/css/docs.css') }}" media="all">#}
-        {#<link rel="stylesheet" href="{{ asset('bundles/admin/css/pygments-manni.css') }}" media="all">#}
-        {#<link rel="stylesheet" href="{{ asset('bundles/admin/css/tokenfield-typeahead.css') }}" media="all">#}
-
 
         <link rel="stylesheet"
               href="{{ asset("bundles/admin/bootstrap3-editable/bootstrap3-editable/css/bootstrap-editable.css") }}"/>
         <link rel="stylesheet" href="{{ asset('bundles/admin/datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
               media="all">
 
-        <link rel="stylesheet" href="{{ asset('bundles/allbysirtrevor/sir-trevor-js/sir-trevor-icons.css') }}"
-              type="text/css" media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="{{ asset('bundles/allbysirtrevor/sir-trevor-js/sir-trevor.css') }}" type="text/css"
-              media="screen" title="no title" charset="utf-8">
-        <link rel="stylesheet" href="{{ asset('bundles/allbysirtrevor/css/style.css') }}" type="text/css" media="screen"
-              title="no title" charset="utf-8">
-
         {% if admin_pool is defined and admin_pool.getOption('use_select2') %}
-            <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/select2/select2.css') }}" media="all">
+            <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/vendor/select2/select2.css') }}" media="all">
             <style>
                 div.select2-container {
                     margin-left: 0px !important;
@@ -90,15 +79,6 @@ file that was distributed with this source code.
     {% endblock stylesheets %}
 
     {% block javascripts %}
-
-        <script src="{{ asset('bundles/allbysirtrevor/components/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/components/Eventable/eventable.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/components/underscore/underscore-min.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/sir-trevor-js/sir-trevor.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/js/htmlparser.min.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/js/html2json.js') }}"></script>
-        <script src="{{ asset('bundles/allbysirtrevor/js/main.js') }}"></script>
-
         <script>
             window.SONATA_CONFIG = {
                 CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
@@ -136,8 +116,6 @@ file that was distributed with this source code.
             src="{{ asset('bundles/admin/bootstrap3-editable/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
         <script src="{{ asset('bundles/admin/js/Admin.js') }}"></script>
         <script src="{{ asset('bundles/admin/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
-
-        <script src="{{ asset('bundles/admin/js/allby.js') }}"></script>
     {% endblock javascripts %}
 </head>
 

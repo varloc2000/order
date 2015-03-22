@@ -1,0 +1,7 @@
+parameters:
+#    insider_currency.example.class: Insider\CurrencyBundle\Example
+
+services:
+#    insider_currency.example:
+#        class: %insider_currency.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

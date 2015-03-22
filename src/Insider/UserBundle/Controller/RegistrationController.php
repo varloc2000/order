@@ -15,8 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AllBY\UserBundle\Entity\User;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True as RecaptchaTrue;
+use Insider\UserBundle\Entity\User;
 use Symfony\Component\Form\FormError;
 
 class RegistrationController extends BaseController
@@ -30,17 +29,6 @@ class RegistrationController extends BaseController
         $data = array();
         $form = $this->container->get('form.factory')->createBuilder('form', $data)
             ->add("username", "text", array("label" => "Имя пользователя"))
-            ->add('recaptcha', 'ewz_recaptcha', array(
-                'attr'          => array(
-                    'options' => array(
-                        'theme' => 'clean'
-                    )
-                ),
-                'mapped' => false,
-                'constraints'   => array(
-                    new RecaptchaTrue()
-                )
-            ))
             ->getForm();
 
         if ( $request->getMethod() == "POST" )
@@ -148,17 +136,6 @@ class RegistrationController extends BaseController
 
         $user->setEnabled(true);
 
-        if ( $user->getEmail() == $user->getOdnoklassnikiId() ||
-             $user->getEmail() == $user->getFacebookId() ||
-             $user->getEmail() == $user->getVkontakteId() )
-            $user->setEmail("");
-
-        if ( $user->getUsername() == $user->getOdnoklassnikiId() ||
-            $user->getUsername() == $user->getFacebookId() ||
-            $user->getUsername() == $user->getVkontakteId() )
-            $user->setUsername("");
-
-
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 
@@ -171,13 +148,6 @@ class RegistrationController extends BaseController
 
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
-
-            $recaptchaConstraint = new RecaptchaTrue();
-            // use the validator to validate the value
-            $errorList = $this->container->get('validator')->validateValue(
-                $request,
-                $recaptchaConstraint
-            );
 
             if ( count($errorList) )
                     $form->addError(new FormError($errorList->get(0)->getMessage()));
@@ -199,7 +169,7 @@ class RegistrationController extends BaseController
             }
         }
 
-        return $this->container->get('templating')->renderResponse('AllBYUserBundle:Registration:register.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('InsiderUserBundle:Registration:register.html.'.$this->getEngine(), array(
                 'form' => $form->createView(), 'user' => $user
             ));
     }

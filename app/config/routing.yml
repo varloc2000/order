@@ -1,3 +1,7 @@
+insider_order:
+    resource: "@InsiderOrderBundle/Resources/config/routing.yml"
+    prefix:   /
+
 insider_user:
     resource: "@InsiderUserBundle/Resources/config/routing.yml"
     prefix:   /

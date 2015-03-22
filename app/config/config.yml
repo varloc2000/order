@@ -90,31 +90,25 @@ sonata_core:
             css_class: danger # optionally, a CSS class can be defined
 
 sonata_admin:
-    extensions:
-        all_by_sir_trevor.admin.extension:
-            admins:
-                - all_by_archive.admin.archive
-
-
-    title:      AllBY Admin
+    extensions: ~
+    title: Заказы
     options:
-        use_select2: false
+        use_select2: true
         pager_links: 15
-
     templates:
         # default global templates
 #        layout:  SonataAdminBundle::layout.html.twig
     security:
-            handler: sonata.admin.security.handler.role
-            information:
-                    EDIT: EDIT
-                    LIST: LIST
-                    CREATE: CREATE
-                    VIEW: VIEW
-                    DELETE: DELETE
-                    EXPORT: EXPORT
-                    OPERATOR: OPERATOR
-                    MASTER: MASTER
+        handler: sonata.admin.security.handler.role
+        information:
+            EDIT: EDIT
+            LIST: LIST
+            CREATE: CREATE
+            VIEW: VIEW
+            DELETE: DELETE
+            EXPORT: EXPORT
+            OPERATOR: OPERATOR
+            MASTER: MASTER
 
     dashboard:
         blocks:
@@ -126,8 +120,7 @@ sonata_admin:
                 type: sonata.block.service.text
                 settings:
                     content: >
-                        <h2>Добро пожаловать<br/> в систему администрирования <br/>Портала "Вся Беларусь"</h2>
-                        <p>Текст приветствия или краткого руководства</p>
+                        <h2>Система заказов</h2>
 
 # FOS Configuration
 fos_user:
@@ -136,10 +129,10 @@ fos_user:
     user_class: Insider\UserBundle\Entity\User
     from_email:
         address:        info@allby.tv
-        sender_name:    Вся Беларусь
+        sender_name:    Система заказов
     registration:
         form:
-            type: allby_user_registration
+            type: insider_user_registration
             validation_groups:  [AllBYRegistration]
         confirmation:
             enabled:    true

@@ -2,39 +2,5 @@ services:
     application_admin.admin.extension:
         class: Application\Sonata\AdminBundle\Admin\Extension\RecoverAdminExtension
         tags:
-            - { name: sonata.admin.extension, target: all_by_video.admin.video }
-            - { name: sonata.admin.extension, target: all_by_video.admin.video_album }
-            - { name: sonata.admin.extension, target: all_by_file.admin.file }
-            - { name: sonata.admin.extension, target: all_by_file.admin.file_category }
-            - { name: sonata.admin.extension, target: all_by_archive.admin.archive }
-            - { name: sonata.admin.extension, target: all_by_archive.admin.archive_category }
-            - { name: sonata.admin.extension, target: all_by_audio.admin.audio }
-            - { name: sonata.admin.extension, target: all_by_audio.admin.audio_album }
-            - { name: sonata.admin.extension, target: all_by_flash.admin.flash }
-            - { name: sonata.admin.extension, target: all_by_photo.admin.photo }
-            - { name: sonata.admin.extension, target: all_by_photo.admin.photo_album }
-            - { name: sonata.admin.extension, target: all_by_banned_word.admin.banned_word }
-            - { name: sonata.admin.extension, target: all_by_content_project.admin.content_project }
-            - { name: sonata.admin.extension, target: all_by_media.admin.media }
-            - { name: sonata.admin.extension, target: all_by_rubrics.admin.rubric }
+            - { name: sonata.admin.extension, target: all_by_order.admin.order }
             - { name: sonata.admin.extension, target: all_by_user.admin.user }
-            - { name: sonata.admin.extension, target: all_by_user.admin.role }
-            - { name: sonata.admin.extension, target: all_by_wiki.admin.wiki_category }
-            - { name: sonata.admin.extension, target: all_by_main_page.admin.main_page }
-            - { name: sonata.admin.extension, target: all_by_adv.admin.adv_campaign }
-            - { name: sonata.admin.extension, target: all_by_adv.admin.adv_content }
-            - { name: sonata.admin.extension, target: all_by_comment.admin.comment }
-
-    ## Admin extension to create collection of subject
-    application_admin.admin.create_many.extension:
-        class: Application\Sonata\AdminBundle\Admin\Extension\MediaCollectionAdminExtension
-        tags:
-            - { name: sonata.admin.extension, target: all_by_video.admin.video }
-            - { name: sonata.admin.extension, target: all_by_audio.admin.audio }
-            - { name: sonata.admin.extension, target: all_by_photo.admin.photo }
-
-    lication_admin.media_collection_update_subscriber:
-        class: Application\Sonata\AdminBundle\EventListener\MediaCollectionSubscriber
-        arguments: []
-        tags:
-            - { name: doctrine.event_subscriber, connection: default }

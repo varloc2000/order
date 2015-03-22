@@ -14,7 +14,7 @@ services:
         class: Insider\UserBundle\Admin\RoleAdmin
         arguments: [~, Insider\UserBundle\Entity\Role, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: "Пользователи", label: "Роли", label_translator_strategy: sonata.admin.label.strategy.underscore}
+            - {name: sonata.admin, manager_type: orm, group: "Роли", label: "Роли", label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
             - [setTranslationDomain, [InsiderUserBundle]]
 
@@ -30,7 +30,7 @@ services:
         class: Insider\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
         tags:
-            - {name: form.type, alias: allby_user_registration}
+            - {name: form.type, alias: insider_user_registration}
 
     insider_user.provider:
         class: Insider\UserBundle\Security\InsiderUserProvider
