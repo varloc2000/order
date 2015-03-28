@@ -6,17 +6,17 @@ services:
         class: Insider\UserBundle\Admin\UserAdmin
         arguments: [~, Insider\UserBundle\Entity\User, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: "Пользователи", label: "Пользователи", label_translator_strategy: sonata.admin.label.strategy.underscore}
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Пользователи", label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
-            - [setTranslationDomain, [InsiderUserBundle]]
+            - [setTranslationDomain, [SonataAdminBundle]]
 
     insider_user.admin.role:
         class: Insider\UserBundle\Admin\RoleAdmin
         arguments: [~, Insider\UserBundle\Entity\Role, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: "Роли", label: "Роли", label_translator_strategy: sonata.admin.label.strategy.underscore}
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Роли", label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
-            - [setTranslationDomain, [InsiderUserBundle]]
+            - [setTranslationDomain, [SonataAdminBundle]]
 
     insider_user.admin.access_by_module:
         class: Insider\UserBundle\Admin\AccessByModuleAdmin

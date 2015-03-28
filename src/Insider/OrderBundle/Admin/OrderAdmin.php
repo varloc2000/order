@@ -14,6 +14,22 @@ class OrderAdmin extends Admin
         'validation_groups' => array()
     );
 
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'createdAt',
+    );
+
+
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+
+        $query->andWhere('o.isActive = 1');
+
+        return $query;
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -22,19 +38,14 @@ class OrderAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('user')
-            ->add('link')
             ->add('title')
             ->add('price')
             ->add('priceCurrency')
             ->add('chinaPrice')
             ->add('chinaPriceCurrency')
-//            ->add('delivery')
+            ->add('delivery')
             ->add('quantity')
-            ->add('size')
-            ->add('color')
             ->add('category')
-            ->add('description')
-            ->add('isActive')
         ;
     }
 
@@ -45,35 +56,30 @@ class OrderAdmin extends Admin
     {
         $listMapper
             ->add('id')
+            ->add('photo')
             ->add('user', null, array('sortable' => false))
-            ->add('link')
+//            ->add('link')
             ->add('title')
             ->add('price')
-            ->add('priceCurrency')
+//            ->add('priceCurrency')
             ->add('chinaPrice')
-            ->add('chinaPriceCurrency')
+//            ->add('chinaPriceCurrency')
 //            ->add('delivery')
             ->add('quantity')
-            ->add('size')
-            ->add('color')
-            ->add('photo')
-            ->add('category')
-            ->add('description')
-            ->add('isActive')
-        ;
-    }
-
-    public function getFilterParameters()
-    {
-        $this->datagridValues = array_merge(array(
-                'isActive' => array(
-                    'value' => true,
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                    'recover' => array(),
                 )
-            ),
-            $this->datagridValues
-
-        );
-        return parent::getFilterParameters();
+            ))
+//            ->add('size')
+//            ->add('color')
+//            ->add('category')
+//            ->add('description')
+//            ->add('isActive')
+        ;
     }
 
     /**

@@ -5,20 +5,23 @@ namespace Insider\OrderBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-//use AllBY\BaseBundle\Entity\Interfaces\SoftDeleteInterface;
+use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
+use Application\Sonata\AdminBundle\Entity\UserInterface;
+use Insider\UserBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="Insider\OrderBundle\Entity\Repository\OrderRepository")
  * @ORM\Table(name="ord")
  * @ORM\HasLifecycleCallbacks()
  */
-class Order
+class Order implements SoftDeleteInterface, UserInterface
 {
     const STATUS_NEW = 0;
-    const STATUS_CHECKED    = 1;
-    const STATUS_BLOCKED    = 2;
-    const STATUS_DELETED    = 3;
+    const STATUS_OPEN = 1;
+    const STATUS_BUYED = 2;
+    const STATUS_SENT = 3;
+    const STATUS_IN_OFFICE = 4;
+    const STATUS_COMPLETE = 5;
 
     /**
      * @ORM\Id
@@ -55,7 +58,7 @@ class Order
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $quantity;
+    protected $quantity = 1;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -73,7 +76,7 @@ class Order
     protected $price;
 
     /**
-     * @ORM\OneToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
      */
     protected $priceCurrency;
 
@@ -83,11 +86,12 @@ class Order
     protected $chinaPrice;
 
     /**
-     * @ORM\OneToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
      */
     protected $chinaPriceCurrency;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Delivery")
      */
     protected $delivery;
 
@@ -136,10 +140,12 @@ class Order
     private $file;
 
     private static $statusNames = array(
-        self::STATUS_NEW => "Создан",
-        self::STATUS_CHECKED => "Проверен",
-        self::STATUS_BLOCKED => "Заблокирован",
-        self::STATUS_DELETED => "Удален",
+        self::STATUS_NEW => "Новый",
+        self::STATUS_OPEN => "Открытый (на выкуп)",
+        self::STATUS_BUYED => "Выкуплен",
+        self::STATUS_SENT => "Отправлен",
+        self::STATUS_IN_OFFICE => "Получен (В Минском офисе)",
+        self::STATUS_COMPLETE => "Отдан клиенту",
     );
 
     public static function getStatusNames()
@@ -475,7 +481,7 @@ class Order
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {
@@ -483,9 +489,9 @@ class Order
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
      */
-    public function setUser($user)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
     }

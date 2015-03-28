@@ -2,13 +2,29 @@ parameters:
 #    insider_order.example.class: Insider\OrderBundle\Example
 
 services:
+    insider_order.admin.extension:
+        class: Insider\OrderBundle\Admin\Extension\UserOrderAdminExtension
+        tags:
+            - { name: sonata.admin.extension, target: insider_order.admin.order }
+            - { name: sonata.admin.extension, target: insider_order.admin.deleted_order }
+        calls:
+            - [ setSecurityContext, [@security.context]]
+
     insider_order.admin.order_category:
         class: Insider\OrderBundle\Admin\OrderCategoryAdmin
         arguments: [~, Insider\OrderBundle\Entity\OrderCategory, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Категории", label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
-            - [setTranslationDomain, [InsiderOrderBundle]]
+            - [setTranslationDomain, [SonataAdminBundle]]
+
+    insider_order.admin.delivery:
+        class: Insider\OrderBundle\Admin\DeliveryAdmin
+        arguments: [~, Insider\OrderBundle\Entity\Delivery, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Доставка", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
 
     insider_order.admin.order:
         class: Insider\OrderBundle\Admin\OrderAdmin
@@ -16,4 +32,20 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Заказы", label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
-            - [setTranslationDomain, [InsiderOrderBundle]]
+            - [setTranslationDomain, [SonataAdminBundle]]
+
+    insider_order.admin.deleted_order:
+        class: Insider\OrderBundle\Admin\DeletedOrderAdmin
+        arguments: [~, Insider\OrderBundle\Entity\Order, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Удаленные Заказы", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+
+    insider_order.admin.completed_order:
+        class: Insider\OrderBundle\Admin\CompletedOrderAdmin
+        arguments: [~, Insider\OrderBundle\Entity\Order, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Заказы", label: "Завершенные Заказы", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]

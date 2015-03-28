@@ -1,11 +1,8 @@
 <?php
-/**
- * Created by Mikhail Pegasin, 04.2014
- */
 
 namespace Application\Sonata\AdminBundle\Twig\Extension;
 
-use AllBY\BaseBundle\Entity\Interfaces\SoftDeleteInterface;
+use Application\SonataAdminBundle\Entity\SoftDeleteInterface;
 
 class AdminExtension extends \Twig_Extension
 {

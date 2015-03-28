@@ -2,5 +2,17 @@ services:
     application_admin.admin.extension:
         class: Application\Sonata\AdminBundle\Admin\Extension\RecoverAdminExtension
         tags:
-            - { name: sonata.admin.extension, target: all_by_order.admin.order }
-            - { name: sonata.admin.extension, target: all_by_user.admin.user }
+            - { name: sonata.admin.extension, target: insider_order.admin.order }
+            - { name: sonata.admin.extension, target: insider_user.admin.user }
+
+    application_admin.soft_delete_subscriber:
+        class: Application\Sonata\AdminBundle\EventListener\SoftDeleteSubscriber
+        arguments: []
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    application_admin.user_subscriber:
+        class: Application\Sonata\AdminBundle\EventListener\UserSubscriber
+        arguments: [@service_container]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

@@ -5,14 +5,14 @@ namespace Insider\OrderBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-//use AllBY\BaseBundle\Entity\Interfaces\SoftDeleteInterface;
+use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Insider\OrderBundle\Entity\Repository\OrderCategoryRepository")
  * @ORM\Table(name="ord_category")
  * @ORM\HasLifecycleCallbacks()
  */
-class OrderCategory
+class OrderCategory implements SoftDeleteInterface
 {
     /**
      * @ORM\Id
@@ -30,6 +30,11 @@ class OrderCategory
      * @ORM\OneToMany(targetEntity="Order", mappedBy="category")
      */
     protected $orders;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $isActive = true;
 
     /**
      * @return mixed
@@ -61,5 +66,37 @@ class OrderCategory
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param mixed $orders
+     */
+    public function setOrders($orders)
+    {
+        $this->orders = $orders;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
     }
 }

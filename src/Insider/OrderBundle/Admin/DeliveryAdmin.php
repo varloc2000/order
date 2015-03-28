@@ -1,6 +1,6 @@
 <?php
 
-namespace Insider\CurrencyBundle\Admin;
+namespace Insider\OrderBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class CurrencyAdmin extends Admin
+class DeliveryAdmin extends Admin
 {
     protected $formOptions = array(
         'validation_groups' => array()
@@ -22,8 +22,8 @@ class CurrencyAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('title')
-            ->add('sign')
-            ->add('course')
+            ->add('price')
+            ->add('priceCurrency')
         ;
     }
 
@@ -35,8 +35,8 @@ class CurrencyAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('title')
-            ->add('sign')
-            ->add('course')
+            ->add('price')
+            ->add('titleCurrency')
         ;
     }
 
@@ -47,8 +47,9 @@ class CurrencyAdmin extends Admin
     {
         $formMapper
             ->add('title')
-            ->add('sign')
-            ->add('course')
+            ->add('description')
+            ->add('price')
+            ->add('priceCurrency')
         ;
     }
 
@@ -60,8 +61,9 @@ class CurrencyAdmin extends Admin
         $showMapper
             ->add('id')
             ->add('title')
-            ->add('sign')
-            ->add('course')
+            ->add('description')
+            ->add('price')
+            ->add('priceCurrency')
         ;
     }
 }

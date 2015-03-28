@@ -2,6 +2,10 @@ parameters:
 #    insider_currency.example.class: Insider\CurrencyBundle\Example
 
 services:
-#    insider_currency.example:
-#        class: %insider_currency.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    insider_currency.admin.currency:
+        class: Insider\CurrencyBundle\Admin\CurrencyAdmin
+        arguments: [~, Insider\CurrencyBundle\Entity\Currency, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Курсы валют", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]

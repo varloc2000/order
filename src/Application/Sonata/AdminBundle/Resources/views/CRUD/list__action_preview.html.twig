@@ -1,0 +1,5 @@
+{% if admin.isGranted('VIEW', object) and admin.hasRoute('preview') %}
+    <a href="{{ admin.generateObjectUrl('preview', object) }}" class="btn btn-primary recover_link btn-small" title="{{ 'action_preview'|trans({}, 'SonataAdminBundle') }}">
+        <i class="fa fa-globe"></i>
+    </a>
+{% endif %}

@@ -411,9 +411,7 @@ class User extends BaseUser
      */
     public static function getAllowedMimeTypes()
     {
-        return [
-
-        ];
+        return array();
     }
 
     /**
