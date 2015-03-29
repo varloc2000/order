@@ -30,6 +30,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        datePattern: 'd F Y g:i'
 
 # Assetic Configuration
 assetic:
@@ -97,7 +99,7 @@ sonata_admin:
         pager_links: 15
     templates:
         # default global templates
-#        layout:  SonataAdminBundle::layout.html.twig
+        action:  SonataAdminBundle:CRUD:action.html.twig
     security:
         handler: sonata.admin.security.handler.role
         information:

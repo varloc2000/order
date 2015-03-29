@@ -42,11 +42,13 @@ class Order implements SoftDeleteInterface, UserInterface
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $link;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $title;
 
@@ -57,41 +59,49 @@ class Order implements SoftDeleteInterface, UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $quantity = 1;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $size;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $color;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @Assert\NotNull()
      */
     protected $priceCurrency;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\NotBlank()
      */
     protected $chinaPrice;
 
     /**
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @Assert\NotNull()
      */
     protected $chinaPriceCurrency;
 
     /**
      * @ORM\ManyToOne(targetEntity="Delivery")
+     * @Assert\NotNull()
      */
     protected $delivery;
 
@@ -494,5 +504,13 @@ class Order implements SoftDeleteInterface, UserInterface
     public function setUser(User $user = null)
     {
         $this->user = $user;
+    }
+
+    public function __toString()
+    {
+        return $this->title
+            ? $this->title
+            : 'Новый заказ'
+        ;
     }
 }

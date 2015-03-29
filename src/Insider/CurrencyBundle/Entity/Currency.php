@@ -102,6 +102,9 @@ class Currency
 
     public function __toString()
     {
-        return $this->sign;
+        return $this->sign
+            ? $this->sign
+            : 'Новая валюта'
+        ;
     }
 }

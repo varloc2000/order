@@ -85,7 +85,7 @@ file that was distributed with this source code.
                 {% endfor %}
             </ul>
         {% else %}
-            <select {{ block('widget_attributes') }} style="width: 100%!important;" {% if multiple %} multiple="multiple"{% endif %}>
+            <select {{ block('widget_attributes') }} {% if multiple %} multiple="multiple"{% endif %}>
                 {% if empty_value is not none %}
                     <option value="">
                         {% if not sonata_admin.admin %}
@@ -219,12 +219,6 @@ file that was distributed with this source code.
         {{ form_widget(form, {'attr':  form.text.vars.attr|default({})|merge({'class': (form.text.vars.attr.class|default('form-control') )|trim})}) }}
     {% endspaceless %}
 {% endblock text_widget %}
-
-{% block textarea_widget %}
-    {% spaceless %}
-        {{ form_widget(form, {'attr':  form.text.vars.attr|default({})|merge({'class': (form.text.vars.attr.class|default('form-control') )|trim})}) }}
-    {% endspaceless %}
-{% endblock textarea_widget %}
 
 {% block number_widget %}
     {% spaceless %}

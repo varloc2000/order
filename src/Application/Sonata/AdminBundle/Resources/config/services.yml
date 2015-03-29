@@ -2,7 +2,7 @@ services:
     application_admin.admin.extension:
         class: Application\Sonata\AdminBundle\Admin\Extension\RecoverAdminExtension
         tags:
-            - { name: sonata.admin.extension, target: insider_order.admin.order }
+            - { name: sonata.admin.extension, target: insider_order.admin.deleted_order }
             - { name: sonata.admin.extension, target: insider_user.admin.user }
 
     application_admin.soft_delete_subscriber:

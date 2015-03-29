@@ -11,7 +11,7 @@ class SoftDeleteSubscriber implements EventSubscriber
 {
     public function getSubscribedEvents()
     {
-        return [Events::onFlush];
+        return array(Events::onFlush);
     }
 
     public function onFlush(EventArgs $args)

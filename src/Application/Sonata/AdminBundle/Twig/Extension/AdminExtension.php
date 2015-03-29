@@ -2,10 +2,21 @@
 
 namespace Application\Sonata\AdminBundle\Twig\Extension;
 
-use Application\SonataAdminBundle\Entity\SoftDeleteInterface;
+use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
+use Insider\OrderBundle\Entity\Order;
 
 class AdminExtension extends \Twig_Extension
 {
+    /**
+     * {@inheritDoc}
+     */
+//    public function getFunctions()
+//    {
+//        return array(
+//            'static' => new \Twig_SimpleFunction($this, 'getStatic')
+//        );
+//    }
+
     /**
      * {@inheritDoc}
      */
@@ -14,6 +25,7 @@ class AdminExtension extends \Twig_Extension
         return array(
             'date' => new \Twig_Filter_Method($this, 'rudate'),
             'is_soft_deletable' => new \Twig_Filter_Method($this, 'isSoftDeletable'),
+            'orderStatusLabel' => new \Twig_Filter_Method($this, 'getOrderStatusLabel'),
 
         );
     }
@@ -38,9 +50,13 @@ class AdminExtension extends \Twig_Extension
         return ($object instanceof SoftDeleteInterface);
     }
 
+    public function getOrderStatusLabel($status)
+    {
+        return Order::getStatusNames()[$status];
+    }
+
     public function getName()
     {
         return 'itmadmin';
     }
-
 }

@@ -119,4 +119,12 @@ class Delivery
     {
         $this->title = $title;
     }
+
+    public function __toString()
+    {
+        return $this->title
+            ? $this->title
+            : 'Новая доставка'
+            ;
+    }
 }

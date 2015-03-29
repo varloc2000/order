@@ -99,4 +99,12 @@ class OrderCategory implements SoftDeleteInterface
     {
         $this->isActive = $isActive;
     }
+
+    public function __toString()
+    {
+        return $this->title
+            ? $this->title
+            : 'Новая категория'
+        ;
+    }
 }

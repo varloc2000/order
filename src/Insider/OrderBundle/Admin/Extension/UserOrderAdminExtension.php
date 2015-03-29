@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Security\Core\SecurityContext;
 
 /**
@@ -48,6 +49,19 @@ class UserOrderAdminExtension extends AdminExtension
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function configureFormFields(FormMapper $form)
+    {
+        if ($this->isClient()) {
+            $form->remove('user');
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function configureListFields(ListMapper $list)
     {
         if ($this->isClient()) {
@@ -55,6 +69,9 @@ class UserOrderAdminExtension extends AdminExtension
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureDatagridFilters(DatagridMapper $filter)
     {
         $filter->remove('user');

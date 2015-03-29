@@ -12,10 +12,7 @@ file that was distributed with this source code.
 {% extends base_template %}
 
 {% block actions %}
-    <div class="btn-group">
-        {% include 'SonataAdminBundle:Core:create_button.html.twig' %}
-        {% include 'SonataAdminBundle:Button:create_many_button.html.twig' %}
-    </div>
+    {% include 'SonataAdminBundle:Core:create_button.html.twig' %}
 {% endblock %}
 
 {% block side_menu %}{{ parent() }}{% endblock %}

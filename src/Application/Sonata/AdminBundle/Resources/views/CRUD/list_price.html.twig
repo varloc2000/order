@@ -1,0 +1,7 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% if value is not null %}
+        <b>{{ object.priceCurrency.sign }}</b>&nbsp;{{ value }}
+    {% endif %}
+{% endblock %}

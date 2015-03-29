@@ -2,6 +2,7 @@
 
 namespace Insider\OrderBundle\Admin;
 
+use Insider\OrderBundle\Entity\Order;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -25,7 +26,11 @@ class OrderAdmin extends Admin
     {
         $query = parent::createQuery($context);
 
-        $query->andWhere('o.isActive = 1');
+        $query
+            ->andWhere('o.isActive = 1')
+            ->andWhere('o.status != :status')
+            ->setParameter('status', Order::STATUS_COMPLETE)
+        ;
 
         return $query;
     }
@@ -39,10 +44,9 @@ class OrderAdmin extends Admin
             ->add('id')
             ->add('user')
             ->add('title')
+            ->add('createdAt')
             ->add('price')
-            ->add('priceCurrency')
             ->add('chinaPrice')
-            ->add('chinaPriceCurrency')
             ->add('delivery')
             ->add('quantity')
             ->add('category')
@@ -57,14 +61,11 @@ class OrderAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('photo')
+            ->add('status', null, array('template' => 'SonataAdminBundle:CRUD:list_status.html.twig'))
             ->add('user', null, array('sortable' => false))
-//            ->add('link')
-            ->add('title')
-            ->add('price')
-//            ->add('priceCurrency')
-            ->add('chinaPrice')
-//            ->add('chinaPriceCurrency')
-//            ->add('delivery')
+            ->add('title', null, array('template' => 'SonataAdminBundle:CRUD:list_title_with_date.html.twig'))
+            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
+            ->add('chinaPrice', null, array('template' => 'SonataAdminBundle:CRUD:list_china_price.html.twig'))
             ->add('quantity')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -74,11 +75,6 @@ class OrderAdmin extends Admin
                     'recover' => array(),
                 )
             ))
-//            ->add('size')
-//            ->add('color')
-//            ->add('category')
-//            ->add('description')
-//            ->add('isActive')
         ;
     }
 
@@ -88,20 +84,38 @@ class OrderAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('user')
-            ->add('link')
-            ->add('title')
-            ->add('price')
-            ->add('priceCurrency')
-            ->add('chinaPrice')
-            ->add('chinaPriceCurrency')
-//            ->add('delivery')
-            ->add('quantity')
-            ->add('size')
-            ->add('color')
-            ->add('file', 'file', array())
-            ->add('category')
-            ->add('description')
+            ->with('Order.Main', array(
+                'class' => 'col-md-4',
+            ))
+                ->add('user')
+                ->add('link')
+                ->add('title')
+            ->end()
+            ->with('Order.Price', array(
+                'class' => 'col-md-4',
+            ))
+                ->add('price', 'number')
+                ->add('priceCurrency', null, array(
+                    'empty_value' => false,
+                ))
+            ->end()
+            ->with('Order.ChinaPrice', array(
+                'class' => 'col-md-4',
+            ))
+                ->add('chinaPrice', 'number')
+                ->add('chinaPriceCurrency')
+            ->end()
+            ->with('Order.Details', array(
+                'class' => 'col-md-12',
+            ))
+                ->add('delivery')
+                ->add('quantity', 'number')
+                ->add('size')
+                ->add('color')
+                ->add('file', 'file', array())
+                ->add('category')
+                ->add('description', 'textarea')
+            ->end()
         ;
     }
 
