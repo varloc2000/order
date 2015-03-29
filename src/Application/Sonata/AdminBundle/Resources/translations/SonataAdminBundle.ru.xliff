@@ -11,6 +11,112 @@
                 <target>Список заказов</target>
             </trans-unit>
 
+            <trans-unit id="breadcrumb.link_user_list">
+                <source>breadcrumb.link_user_list</source>
+                <target>Список пользователей</target>
+            </trans-unit>
+            <trans-unit id="list.label_username">
+                <source>list.label_username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="filter.label_username">
+                <source>filter.label_username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="form.label_username">
+                <source>form.label_username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="list.label_email">
+                <source>list.label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.label_email">
+                <source>form.label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="form.label_role">
+                <source>form.label_role</source>
+                <target>Роль</target>
+            </trans-unit>
+            <trans-unit id="form.label_plain_password">
+                <source>form.label_plain_password</source>
+                <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="form.label_status">
+                <source>form.label_status</source>
+                <target>Статус</target>
+            </trans-unit>
+            <trans-unit id="filter.label_email">
+                <source>filter.label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="list.label_last_login">
+                <source>list.label_last_login</source>
+                <target>Последний вход</target>
+            </trans-unit>
+            <trans-unit id="list.label_created_at">
+                <source>list.label_created_at</source>
+                <target>Зарегистрирован</target>
+            </trans-unit>
+            <trans-unit id="filter.label_is_active">
+                <source>filter.label_is_active</source>
+                <target>Активен</target>
+            </trans-unit>
+            <trans-unit id="filter.label_status">
+                <source>filter.label_status</source>
+                <target>Статус</target>
+            </trans-unit>
+            <trans-unit id="show.label_id">
+                <source>show.label_id</source>
+                <target>Номер</target>
+            </trans-unit>
+            <trans-unit id="show.label_username">
+                <source>show.label_username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="show.label_email">
+                <source>show.label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="show.label_last_login">
+                <source>show.label_last_login</source>
+                <target>Последний вход</target>
+            </trans-unit>
+            <trans-unit id="show.label_created_at">
+                <source>show.label_created_at</source>
+                <target>Зарегистрирован</target>
+            </trans-unit>
+            <trans-unit id="show.label_role">
+                <source>show.label_role</source>
+                <target>Клиент</target>
+            </trans-unit>
+            <trans-unit id="show.label_status">
+                <source>show.label_status</source>
+                <target>Статус</target>
+            </trans-unit>
+            <trans-unit id="form.label_promo">
+                <source>form.label_promo</source>
+                <target>Промо код</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_role_list">
+                <source>breadcrumb.link_role_list</source>
+                <target>Список ролей</target>
+            </trans-unit>
+            <trans-unit id="list.label_name">
+                <source>list.label_name</source>
+                <target>Название</target>
+            </trans-unit>
+            <trans-unit id="filter.label_name">
+                <source>filter.label_name</source>
+                <target>Название</target>
+            </trans-unit>
+            <trans-unit id="list.label_parent_role">
+                <source>list.label_parent_role</source>
+                <target>Родительская роль</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_order_category_list">
                 <source>breadcrumb.link_order_category_list</source>
                 <target>Список категорий заказов</target>

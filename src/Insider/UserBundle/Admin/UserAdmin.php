@@ -51,19 +51,6 @@ class UserAdmin extends Admin
         ;
     }
 
-    public function getFilterParameters()
-    {
-        $this->datagridValues = array_merge(array(
-                'isActive' => array(
-                    'value' => true,
-                )
-            ),
-            $this->datagridValues
-
-        );
-        return parent::getFilterParameters();
-    }
-
     /**
      * @param FormMapper $formMapper
      */
@@ -73,9 +60,10 @@ class UserAdmin extends Admin
         $formMapper
             ->add('username')
             ->add('email')
-            ->add('role', null, array('empty_value' => 'Без роли','empty_data'  => null))
-            ->add('plainPassword', 'text', array('required'=> $passRequired))
+            ->add('role', null, array('empty_value' => false))
+            ->add('plainPassword', 'text', array('required' => $passRequired))
             ->add('status', 'choice', array('choices' => User::getStatusNames(), 'required'=> false))
+            ->add('promo', null, array('attr' => array('readonly' => 'readonly')))
         ;
     }
 

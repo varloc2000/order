@@ -8,15 +8,6 @@
                 <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
                 <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
                 <p>{{ 'Поледний раз входили'|trans({}, 'FOSUserBundle') }}: {{ user.lastLogin| date() }}</p>
-                {% if user.facebookId is not empty %}
-                    <p>{{ 'Зарегистрирован через социальную сеть Facebook. ID' }}: {{ user.facebookId }}</p>
-                {% endif %}
-                {% if user.vkontakteId is not empty %}
-                    <p>{{ 'Зарегистрирован через социальную сеть ВКонтакте. ID' }}: {{ user.vkontakteId }}</p>
-                {% endif %}
-                {% if user.odnoklassnikiId is not empty %}
-                    <p>{{ 'Зарегистрирован через социальную сеть Одноклассники. ID' }}: {{ user.odnoklassnikiId }}</p>
-                {% endif %}
             </div>
         </div>
     </section>

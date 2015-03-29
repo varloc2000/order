@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-//use AllBY\BaseBundle\Entity\Interfaces\SoftDeleteInterface;
+use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Insider\UserBundle\Entity\Repository\UserRepository")
@@ -21,7 +21,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     fields={"email"},
  *     message="Такой адрес электронной почты уже существует!")
  */
-class User extends BaseUser
+class User extends BaseUser implements SoftDeleteInterface
 {
     const STATUS_REGISTERED = 0;
     const STATUS_CHECKED    = 1;
@@ -344,13 +344,15 @@ class User extends BaseUser
      */
     public function setIsActive($isActive)
     {
-        if ( !$this->isActive && $isActive)
+        if (!$this->isActive && $isActive) {
             $this->setStatus(User::STATUS_BLOCKED);
+        }
 
         $this->isActive = $isActive;
 
-        if ( !$this->isActive )
+        if (!$this->isActive) {
             $this->setStatus(User::STATUS_DELETED);
+        }
 
         return $this;
     }

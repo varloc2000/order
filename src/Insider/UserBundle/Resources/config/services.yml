@@ -10,6 +10,14 @@ services:
         calls:
             - [setTranslationDomain, [SonataAdminBundle]]
 
+    insider_user.admin.profile:
+        class: Insider\UserBundle\Admin\ProfileAdmin
+        arguments: [~, Insider\UserBundle\Entity\User, InsiderUserBundle:ProfileAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Профиль", label: "Редактировать", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+
     insider_user.admin.role:
         class: Insider\UserBundle\Admin\RoleAdmin
         arguments: [~, Insider\UserBundle\Entity\Role, SonataAdminBundle:CRUD]

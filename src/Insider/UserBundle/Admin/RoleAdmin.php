@@ -31,7 +31,7 @@ class RoleAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('name')
-            ->add('parentRole', null, array('template' => 'AllBYUserBundle:Admin:parentRole_list.html.twig'))
+//            ->add('parentRole', null, array('template' => 'AllBYUserBundle:Admin:parentRole_list.html.twig'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
