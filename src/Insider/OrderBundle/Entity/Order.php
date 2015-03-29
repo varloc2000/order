@@ -5,8 +5,10 @@ namespace Insider\OrderBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
 use Application\Sonata\AdminBundle\Entity\UserInterface;
+use Application\Sonata\AdminBundle\Entity\CdnUploadableInterface;
 use Insider\UserBundle\Entity\User;
 
 /**
@@ -14,7 +16,7 @@ use Insider\UserBundle\Entity\User;
  * @ORM\Table(name="ord")
  * @ORM\HasLifecycleCallbacks()
  */
-class Order implements SoftDeleteInterface, UserInterface
+class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterface
 {
     const STATUS_NEW = 0;
     const STATUS_OPEN = 1;
@@ -22,6 +24,31 @@ class Order implements SoftDeleteInterface, UserInterface
     const STATUS_SENT = 3;
     const STATUS_IN_OFFICE = 4;
     const STATUS_COMPLETE = 5;
+
+    const PHOTO_TYPE_ONE = 'image/gif';
+    const PHOTO_TYPE_SECOND = 'image/jpeg';
+    const PHOTO_TYPE_THIRD = 'image/pjpeg';
+    const PHOTO_TYPE_FOURTH = 'image/png';
+    const PHOTO_TYPE_FIFTH = 'image/svg+xml';
+    const PHOTO_TYPE_SIXTH = 'image/tiff';
+    const PHOTO_TYPE_SEVENTH = 'image/vnd.microsoft.icon';
+    const PHOTO_TYPE_EIGHTH = 'image/vnd.wap.wbmp';
+    const PHOTO_TYPE_NINTH = 'application/octet-stream';
+
+    /**
+     * @var array
+     */
+    static $allowedMimeTypes = array(
+        self::PHOTO_TYPE_ONE,
+        self::PHOTO_TYPE_SECOND,
+        self::PHOTO_TYPE_THIRD,
+        self::PHOTO_TYPE_FOURTH,
+        self::PHOTO_TYPE_FIFTH,
+        self::PHOTO_TYPE_SIXTH,
+        self::PHOTO_TYPE_SEVENTH,
+        self::PHOTO_TYPE_EIGHTH,
+        self::PHOTO_TYPE_NINTH,
+    );
 
     /**
      * @ORM\Id
@@ -291,9 +318,9 @@ class Order implements SoftDeleteInterface, UserInterface
     }
 
     /**
-     * @param mixed $file
+     * {@inheritDoc}
      */
-    public function setFile($file)
+    public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
     }
@@ -512,5 +539,22 @@ class Order implements SoftDeleteInterface, UserInterface
             ? $this->title
             : 'Новый заказ'
         ;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllowedMimeTypes()
+    {
+        return self::$allowedMimeTypes;
+    }
+
+    /**
+     * @return string - container to use in cdn path
+     * Can use string like 'cdn_name://container_name' to specify cdn storage besides container
+     */
+    public function getContainerName()
+    {
+        return 'orderphoto';
     }
 }

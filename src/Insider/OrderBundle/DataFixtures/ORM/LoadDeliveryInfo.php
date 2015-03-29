@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Insider\OrderBundle\Entity\Delivery;
 
-class LoadOrderInfoData extends AbstractFixture implements OrderedFixtureInterface
+class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}

@@ -1,0 +1,17 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% if value is not null %}
+        {% set webPath = clarity_cdn_safe(value) %}
+        <p>
+            <a href="{{ webPath }}" target="_blank">
+                <img src="{{ webPath }}"
+                     alt="{{ object.title }}"
+                     title="{{ object.title }}"
+                     style="max-width: 100px"
+                     class="img-thumbnail"
+                />
+            </a>
+        </p>
+    {% endif %}
+{% endblock %}

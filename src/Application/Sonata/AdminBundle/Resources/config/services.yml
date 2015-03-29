@@ -11,6 +11,12 @@ services:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
 
+    application_admin.cdn_upload_subscriber:
+        class: Application\Sonata\AdminBundle\EventListener\CdnUploadSubscriber
+        arguments: [@clarity_cdn.filemanager]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
     application_admin.user_subscriber:
         class: Application\Sonata\AdminBundle\EventListener\UserSubscriber
         arguments: [@service_container]

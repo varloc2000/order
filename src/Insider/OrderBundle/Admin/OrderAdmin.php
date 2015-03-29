@@ -60,7 +60,7 @@ class OrderAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('photo')
+            ->add('path', null, array('template' => 'SonataAdminBundle:CRUD:list_path.html.twig'))
             ->add('status', null, array('template' => 'SonataAdminBundle:CRUD:list_status.html.twig'))
             ->add('user', null, array('sortable' => false))
             ->add('title', null, array('template' => 'SonataAdminBundle:CRUD:list_title_with_date.html.twig'))
@@ -83,6 +83,22 @@ class OrderAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $order = $this->getSubject();
+        $fileFieldOptions = array();
+
+        // Get order image
+        if ($order && ($cdnPath = $order->getPath())) {
+            /** @var \Clarity\CdnBundle\Filemanager\Filemanager $filemanager */
+            $filemanager = $this->getConfigurationPool()->getContainer()->get('clarity_cdn.filemanager');
+            $file = $filemanager->get($cdnPath);
+
+            if (is_object($file)) {
+                $fileFieldOptions['help'] = '<img src="' . $file->getWebPath() . '" alt="' . $order->getTitle() . '" title="' . $order->getTitle() . '" style="max-width: 100px"/>';
+            }
+        } else {
+            $fileFieldOptions['help'] = 'Тут будет предпросмотр фотографии';
+        }
+
         $formMapper
             ->with('Order.Main', array(
                 'class' => 'col-md-4',
@@ -112,9 +128,11 @@ class OrderAdmin extends Admin
                 ->add('quantity', 'number')
                 ->add('size')
                 ->add('color')
-                ->add('file', 'file', array())
+                ->add('file', 'file', $fileFieldOptions)
                 ->add('category')
-                ->add('description', 'textarea')
+                ->add('description', 'textarea', array(
+                    'required' => false,
+                ))
             ->end()
         ;
     }

@@ -178,16 +178,12 @@ knp_menu:
 # HWI oAuth Configuration
 
 clarity_cdn:
-    default: "mediaphoto"
+    default: "orderphoto"
     storage:
-        mediaphoto:
+        orderphoto:
             scheme: "local"
-            path: "%kernel.root_dir%/../web/uploads"
-            url: "http://%site_host%/uploads"
-        adv:
-            scheme: "local"
-            path: "%kernel.root_dir%/../web/uploads"
-            url: "http://%site_host%/uploads"
+            path: "%kernel.root_dir%/../web/uploads/order"
+            url: "http://%site_host%/uploads/order"
         user:
             scheme: "local"
             path: "%kernel.root_dir%/../web/uploads/user"
