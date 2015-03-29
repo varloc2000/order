@@ -32,13 +32,13 @@ class CdnUploadSubscriber implements EventSubscriber
      */
     public function getSubscribedEvents()
     {
-        return [
+        return array(
             Events::prePersist,
             Events::preUpdate,
             Events::postPersist,
             Events::postUpdate,
             Events::postRemove,
-        ];
+        );
     }
 
     /**

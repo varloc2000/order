@@ -52,7 +52,8 @@ class AdminExtension extends \Twig_Extension
 
     public function getOrderStatusLabel($status)
     {
-        return Order::getStatusNames()[$status];
+        $statuses = Order::getStatusNames();
+        return $statuses[$status];
     }
 
     public function getName()

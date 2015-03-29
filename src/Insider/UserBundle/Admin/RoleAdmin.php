@@ -50,11 +50,11 @@ class RoleAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('parentRole', 'choice', ['choices' => Role::getParentRoleNames()])
+            ->add('parentRole', 'choice', array('choices' => Role::getParentRoleNames()))
             ->add('accessByModules',  'sonata_type_collection', array( 'by_reference' => true ), array(
-                                                                                'edit' => 'inline',
-                                                                                'inline' => 'table',
-                                                                                'sortable'  => 'position'
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable'  => 'position'
             ))
         ;
     }

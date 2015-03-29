@@ -19,7 +19,7 @@ class UserSubscriber implements EventSubscriber
 
     public function getSubscribedEvents()
     {
-        return [Events::prePersist, Events::preUpdate];
+        return array(Events::prePersist, Events::preUpdate);
     }
 
     public function prePersist(LifecycleEventArgs $args)

@@ -24,7 +24,7 @@ class UserAdmin extends Admin
             ->add('username')
             ->add('email')
             ->add('isActive')
-            ->add('status', 'doctrine_orm_choice', array(), 'choice', ['choices' => User::getStatusNames()])
+            ->add('status', 'doctrine_orm_choice', array(), 'choice', array('choices' => User::getStatusNames()))
         ;
     }
 
@@ -39,7 +39,7 @@ class UserAdmin extends Admin
             ->add('email', null, array('sortable' => false))
             ->add('lastLogin')
             ->add('createdAt')
-            ->add('status', 'choice', ['choices' => User::getStatusNames(), 'sortable' => false])
+            ->add('status', 'choice', array('choices' => User::getStatusNames(), 'sortable' => false))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -73,9 +73,9 @@ class UserAdmin extends Admin
         $formMapper
             ->add('username')
             ->add('email')
-            ->add('role', null, ['empty_value' => 'Без роли','empty_data'  => null])
-            ->add('plainPassword', 'text', ['required'=> $passRequired])
-            ->add('status', 'choice', ['choices' => User::getStatusNames(), 'required'=> false])
+            ->add('role', null, array('empty_value' => 'Без роли','empty_data'  => null))
+            ->add('plainPassword', 'text', array('required'=> $passRequired))
+            ->add('status', 'choice', array('choices' => User::getStatusNames(), 'required'=> false))
         ;
     }
 
@@ -91,7 +91,7 @@ class UserAdmin extends Admin
             ->add('lastLogin')
             ->add('createdAt')
             ->add('role')
-            ->add('status', 'choice', ['choices' => User::getStatusNames()])
+            ->add('status', 'choice', array('choices' => User::getStatusNames()))
         ;
     }
 }
