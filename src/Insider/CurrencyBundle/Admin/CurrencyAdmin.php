@@ -20,7 +20,6 @@ class CurrencyAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
             ->add('title')
             ->add('sign')
             ->add('course')
@@ -33,10 +32,10 @@ class CurrencyAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
             ->add('title')
             ->add('sign')
             ->add('course')
+            ->add('isDefault')
         ;
     }
 
@@ -49,6 +48,7 @@ class CurrencyAdmin extends Admin
             ->add('title')
             ->add('sign')
             ->add('course')
+            ->add('isDefault')
         ;
     }
 
@@ -58,10 +58,10 @@ class CurrencyAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
             ->add('title')
             ->add('sign')
             ->add('course')
+            ->add('isDefault')
         ;
     }
 }

@@ -25,6 +25,7 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('isActive')
             ->add('status', 'doctrine_orm_choice', array(), 'choice', array('choices' => User::getStatusNames()))
+            ->add('balance')
         ;
     }
 
@@ -37,6 +38,7 @@ class UserAdmin extends Admin
             ->add('id')
             ->add('username', null, array('sortable' => false))
             ->add('email', null, array('sortable' => false))
+            ->add('balance', null, array('template' => 'SonataAdminBundle:CRUD:list_balance.html.twig'))
             ->add('lastLogin')
             ->add('createdAt')
             ->add('status', 'choice', array('choices' => User::getStatusNames(), 'sortable' => false))
@@ -63,7 +65,8 @@ class UserAdmin extends Admin
             ->add('role', null, array('empty_value' => false))
             ->add('plainPassword', 'text', array('required' => $passRequired))
             ->add('status', 'choice', array('choices' => User::getStatusNames(), 'required'=> false))
-            ->add('promo', null, array('attr' => array('readonly' => 'readonly')))
+            ->add('promo', 'stas', array('attr' => array('readonly' => 'readonly')))
+            ->add('balance', 'number')
         ;
     }
 

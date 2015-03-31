@@ -2,12 +2,7 @@
 
 namespace Insider\UserBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-use Insider\UserBundle\Entity\User;
 
 class ProfileAdmin extends UserAdmin
 {
@@ -49,6 +44,7 @@ class ProfileAdmin extends UserAdmin
             ->remove('role')
             ->remove('plainPassword')
             ->remove('status')
+//            ->add('balance', 'number', array('attr' => array('readonly' => 'readonly')))
         ;
     }
 }

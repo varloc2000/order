@@ -37,6 +37,11 @@ class Currency
     protected $course;
 
     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $isDefault = 0;
+
+    /**
      * @return mixed
      */
     public function getCourse()
@@ -106,5 +111,21 @@ class Currency
             ? $this->sign
             : 'Новая валюта'
         ;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsDefault()
+    {
+        return $this->isDefault;
+    }
+
+    /**
+     * @param boolean $isDefault
+     */
+    public function setIsDefault($isDefault)
+    {
+        $this->isDefault = $isDefault;
     }
 }

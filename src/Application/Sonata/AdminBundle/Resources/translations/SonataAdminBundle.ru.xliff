@@ -6,14 +6,64 @@
                 <source>list.label__action</source>
                 <target>Действия</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_delivery_list">
+                <source>breadcrumb.link_delivery_list</source>
+                <target>Список вариантов доставки</target>
+            </trans-unit>
+            <trans-unit id="list.label_title_currency">
+                <source>list.label_title_currency</source>
+                <target>Валюта</target>
+            </trans-unit>
+            <trans-unit id="filter.label_price_currency">
+                <source>filter.label_price_currency</source>
+                <target>Валюта</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_order_list">
                 <source>breadcrumb.link_order_list</source>
                 <target>Список заказов</target>
             </trans-unit>
 
+            <trans-unit id="breadcrumb.link_currency_list">
+                <source>breadcrumb.link_currency_list</source>
+                <target>Список курсов валют</target>
+            </trans-unit>
+            <trans-unit id="list.label_sign">
+                <source>list.label_sign</source>
+                <target>Обозначение</target>
+            </trans-unit>
+            <trans-unit id="filter.label_sign">
+                <source>filter.label_sign</source>
+                <target>Обозначение</target>
+            </trans-unit>
+            <trans-unit id="list.label_course">
+                <source>list.label_course</source>
+                <target>Курс к доллару</target>
+            </trans-unit>
+            <trans-unit id="filter.label_course">
+                <source>filter.label_course</source>
+                <target>Курс к доллару</target>
+            </trans-unit>
+            <trans-unit id="list.label_is_default">
+                <source>list.label_is_default</source>
+                <target>По умолчанию</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_user_list">
                 <source>breadcrumb.link_user_list</source>
                 <target>Список пользователей</target>
+            </trans-unit>
+            <trans-unit id="list.label_balance">
+                <source>list.label_balance</source>
+                <target>Баланс</target>
+            </trans-unit>
+            <trans-unit id="form.label_balance">
+                <source>form.label_balance</source>
+                <target>Баланс</target>
+            </trans-unit>
+            <trans-unit id="filter.label_balance">
+                <source>filter.label_balance</source>
+                <target>Баланс</target>
             </trans-unit>
             <trans-unit id="list.label_username">
                 <source>list.label_username</source>

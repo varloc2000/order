@@ -25,6 +25,7 @@ class LoadCurrencyInfoData extends AbstractFixture implements OrderedFixtureInte
         $dollar->setCourse(1);
         $dollar->setTitle('Доллар');
         $dollar->setSign('USD');
+        $dollar->setIsDefault(true);
         $this->setReference('dollar', $dollar);
 
         $manager->persist($dollar);
@@ -51,6 +52,6 @@ class LoadCurrencyInfoData extends AbstractFixture implements OrderedFixtureInte
     */
     public function getOrder()
     {
-        return 4;
+        return 0;
     }
 }

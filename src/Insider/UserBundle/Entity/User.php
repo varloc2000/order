@@ -5,6 +5,7 @@ namespace Insider\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Insider\CurrencyBundle\Entity\Currency;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -68,6 +69,16 @@ class User extends BaseUser implements SoftDeleteInterface
     /**
      * @ORM\Column(type="string", nullable=true)
      */
+    protected $firstName;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $lastName;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected $additional;
 
     /**
@@ -79,6 +90,11 @@ class User extends BaseUser implements SoftDeleteInterface
      * @ORM\Column(type="float", nullable=true)
      */
     protected $balance = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     */
+    protected $currency;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -528,5 +544,37 @@ class User extends BaseUser implements SoftDeleteInterface
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param Currency $currency
+     */
+    public function setCurrency(Currency $currency)
+    {
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param mixed $orders
+     */
+    public function setOrders($orders)
+    {
+        $this->orders = $orders;
     }
 }

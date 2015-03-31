@@ -76,6 +76,7 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $admin->setUsername("admin");
         $admin->setEnabled(true);
         $admin->setRole($this->getReference('admin_role'));
+        $admin->setCurrency($this->getReference('dollar'));
         $admin->setStatus(User::STATUS_CHECKED);
         $admin->setPromo($this->generatePromoCode());
 
@@ -90,8 +91,10 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $client->setUsername("client");
         $client->setEnabled(true);
         $client->setRole($this->getReference('client_role'));
+        $client->setCurrency($this->getReference('euro'));
         $client->setStatus(User::STATUS_CHECKED);
         $client->setPromo($this->generatePromoCode());
+        $client->setBalance(100.5);
 
         $this->addReference('client', $client);
 

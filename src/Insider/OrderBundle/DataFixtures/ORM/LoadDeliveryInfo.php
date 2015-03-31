@@ -51,6 +51,6 @@ class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInte
     */
     public function getOrder()
     {
-        return 15;
+        return 1;
     }
 }

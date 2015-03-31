@@ -62,7 +62,10 @@ class OrderAdmin extends Admin
             ->add('id')
             ->add('path', null, array('template' => 'SonataAdminBundle:CRUD:list_path.html.twig'))
             ->add('status', null, array('template' => 'SonataAdminBundle:CRUD:list_status.html.twig'))
-            ->add('user', null, array('sortable' => false))
+            ->add('user.username', null, array(
+                'sortable' => false,
+//                'admin_code' => 'insider_user.admin.user',
+            ))
             ->add('title', null, array('template' => 'SonataAdminBundle:CRUD:list_title_with_date.html.twig'))
             ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
             ->add('chinaPrice', null, array('template' => 'SonataAdminBundle:CRUD:list_china_price.html.twig'))
@@ -103,7 +106,9 @@ class OrderAdmin extends Admin
             ->with('Order.Main', array(
                 'class' => 'col-md-4',
             ))
-                ->add('user')
+                ->add('user', array(
+                    'admin_code' => 'insider_user.admin.user',
+                ))
                 ->add('link')
                 ->add('title')
             ->end()
