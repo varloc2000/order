@@ -1,0 +1,10 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% if value is not null %}
+        <p>{{ value|date(datePattern) }}</p>
+        <p>
+            <small class="text-muted">Последний вход: {{ object.lastLogin|date(datePattern) }}</small>
+        </p>
+    {% endif %}
+{% endblock %}

@@ -86,6 +86,7 @@ class OrderAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $this->getShow();
         $order = $this->getSubject();
         $fileFieldOptions = array();
 
@@ -106,8 +107,8 @@ class OrderAdmin extends Admin
             ->with('Order.Main', array(
                 'class' => 'col-md-4',
             ))
-                ->add('user', array(
-                    'admin_code' => 'insider_user.admin.user',
+                ->add('user', null, array(), array(
+                    'admin_code' => 'insider_user.admin.user'
                 ))
                 ->add('link')
                 ->add('title')
@@ -149,7 +150,9 @@ class OrderAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('user')
+            ->add('user', null, array(
+                'admin_code' => 'insider_user.admin.user'
+            ))
             ->add('link')
             ->add('title')
             ->add('price')

@@ -41,10 +41,26 @@ class ProfileAdmin extends UserAdmin
         parent::configureFormFields($formMapper);
 
         $formMapper
-            ->remove('role')
-            ->remove('plainPassword')
-            ->remove('status')
-//            ->add('balance', 'number', array('attr' => array('readonly' => 'readonly')))
+            ->with('User.Main', array(
+                'class' => 'col-md-4',
+            ))
+                ->remove('role')
+                ->remove('plainPassword')
+                ->remove('status')
+                ->remove('status')
+                ->remove('status')
+                ->add('balance', 'number', array('attr' => array('readonly' => 'readonly')))
+            ->end()
+            ->with('Profile.Additional', array(
+                'class' => 'col-md-8',
+                'description' => 'Чтобы было легче с вами связаться, пожалуйста, укажите личные данные:',
+            ))
+                ->add('firstName')
+                ->add('lastName')
+                ->add('phone')
+                ->add('skype')
+                ->add('vk')
+            ->end()
         ;
     }
 }

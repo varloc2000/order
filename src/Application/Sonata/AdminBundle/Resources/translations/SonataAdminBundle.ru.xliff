@@ -23,6 +23,10 @@
                 <source>breadcrumb.link_order_list</source>
                 <target>Список заказов</target>
             </trans-unit>
+            <trans-unit id="list.label_path">
+                <source>list.label_path</source>
+                <target>Фото</target>
+            </trans-unit>
 
             <trans-unit id="breadcrumb.link_currency_list">
                 <source>breadcrumb.link_currency_list</source>
@@ -52,6 +56,14 @@
             <trans-unit id="breadcrumb.link_user_list">
                 <source>breadcrumb.link_user_list</source>
                 <target>Список пользователей</target>
+            </trans-unit>
+            <trans-unit id="User.Main">
+                <source>User.Main</source>
+                <target>Основное</target>
+            </trans-unit>
+            <trans-unit id="Profile.Additional">
+                <source>Profile.Additional</source>
+                <target>Дополнительно</target>
             </trans-unit>
             <trans-unit id="list.label_balance">
                 <source>list.label_balance</source>
@@ -149,6 +161,26 @@
                 <source>form.label_promo</source>
                 <target>Промо код</target>
             </trans-unit>
+            <trans-unit id="form.label_first_name">
+                <source>form.label_first_name</source>
+                <target>Имя</target>
+            </trans-unit>
+            <trans-unit id="form.label_last_name">
+                <source>form.label_last_name</source>
+                <target>Фамилия</target>
+            </trans-unit>
+            <trans-unit id="form.label_phone">
+                <source>form.label_phone</source>
+                <target>Телефон</target>
+            </trans-unit>
+            <trans-unit id="form.label_skype">
+                <source>form.label_skype</source>
+                <target>Skype</target>
+            </trans-unit>
+            <trans-unit id="form.label_vk">
+                <source>form.label_vk</source>
+                <target>Вконтакте</target>
+            </trans-unit>
 
             <trans-unit id="breadcrumb.link_role_list">
                 <source>breadcrumb.link_role_list</source>
@@ -192,12 +224,20 @@
                 <source>form.label_file</source>
                 <target>Фото</target>
             </trans-unit>
+            <trans-unit id="show.label_photo">
+                <source>show.label_photo</source>
+                <target>Фото</target>
+            </trans-unit>
             <trans-unit id="list.label_status">
                 <source>list.label_status</source>
                 <target>Статус</target>
             </trans-unit>
-            <trans-unit id="list.label_user">
-                <source>list.label_user</source>
+            <trans-unit id="list.label_user_username">
+                <source>list.label_user_username</source>
+                <target>Пользователь</target>
+            </trans-unit>
+            <trans-unit id="show.label_user">
+                <source>show.label_user</source>
                 <target>Пользователь</target>
             </trans-unit>
             <trans-unit id="form.label_user">
@@ -220,12 +260,24 @@
                 <source>filter.label_title</source>
                 <target>Название</target>
             </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Название</target>
+            </trans-unit>
             <trans-unit id="form.label_link">
                 <source>form.label_link</source>
                 <target>Ссылка</target>
             </trans-unit>
+            <trans-unit id="show.label_link">
+                <source>show.label_link</source>
+                <target>Ссылка</target>
+            </trans-unit>
             <trans-unit id="list.label_price">
                 <source>list.label_price</source>
+                <target>Цена</target>
+            </trans-unit>
+            <trans-unit id="show.label_price">
+                <source>show.label_price</source>
                 <target>Цена</target>
             </trans-unit>
             <trans-unit id="form.label_price">
@@ -240,8 +292,16 @@
                 <source>form.label_price_currency</source>
                 <target>Валюта</target>
             </trans-unit>
+            <trans-unit id="show.label_price_currency">
+                <source>show.label_price_currency</source>
+                <target>Валюта</target>
+            </trans-unit>
             <trans-unit id="list.label_china_price">
                 <source>list.label_china_price</source>
+                <target>Доставка по Китаю</target>
+            </trans-unit>
+            <trans-unit id="show.label_china_price">
+                <source>show.label_china_price</source>
                 <target>Доставка по Китаю</target>
             </trans-unit>
             <trans-unit id="filter.label_china_price">
@@ -256,8 +316,16 @@
                 <source>form.label_china_price_currency</source>
                 <target>Валюта доставки по Китаю</target>
             </trans-unit>
+            <trans-unit id="show.label_china_price_currency">
+                <source>show.label_china_price_currency</source>
+                <target>Валюта доставки по Китаю</target>
+            </trans-unit>
             <trans-unit id="list.label_quantity">
                 <source>list.label_quantity</source>
+                <target>Колво</target>
+            </trans-unit>
+            <trans-unit id="show.label_quantity">
+                <source>show.label_quantity</source>
                 <target>Колво</target>
             </trans-unit>
             <trans-unit id="filter.label_quantity">
@@ -272,8 +340,16 @@
                 <source>form.label_size</source>
                 <target>Размер</target>
             </trans-unit>
+            <trans-unit id="show.label_size">
+                <source>show.label_size</source>
+                <target>Размер</target>
+            </trans-unit>
             <trans-unit id="form.label_color">
                 <source>form.label_color</source>
+                <target>Цвет</target>
+            </trans-unit>
+            <trans-unit id="show.label_color">
+                <source>show.label_color</source>
                 <target>Цвет</target>
             </trans-unit>
             <trans-unit id="filter.label_delivery">
@@ -288,6 +364,10 @@
                 <source>form.label_category</source>
                 <target>Категория</target>
             </trans-unit>
+            <trans-unit id="show.label_category">
+                <source>show.label_category</source>
+                <target>Категория</target>
+            </trans-unit>
             <trans-unit id="form.label_delivery">
                 <source>form.label_delivery</source>
                 <target>Способ доставки</target>
@@ -295,6 +375,14 @@
             <trans-unit id="form.label_description">
                 <source>form.label_description</source>
                 <target>Описание</target>
+            </trans-unit>
+            <trans-unit id="show.label_description">
+                <source>show.label_description</source>
+                <target>Описание</target>
+            </trans-unit>
+            <trans-unit id="show.label_is_active">
+                <source>show.label_is_active</source>
+                <target>Активен</target>
             </trans-unit>
 
 

@@ -1,0 +1,15 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% if value is not null %}
+        <p>{{ value|date(datePattern) }}</p>
+        <div>
+            {% if object.firstName or object.lastName %}
+                <p>{{ object.firstName }}&nbsp;{{ object.lastName }}</p>
+            {%  endif %}
+            <hr/>
+            <p><i class="text-muted">Skype:</i> {{ object.skype|default('Нет') }}</p>
+            <p><i class="text-muted">Вконтакте:</i> {{ object.vk|default('Нет') }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
