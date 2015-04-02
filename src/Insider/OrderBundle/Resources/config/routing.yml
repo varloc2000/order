@@ -1,3 +1,0 @@
-insider_order_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: InsiderOrderBundle:Default:index }
