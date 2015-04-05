@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    <script>
+        function submitForm(select) {
+            $(select).parents('form').submit();
+        }
+    </script>
+    <div class="form-group">
+        {{ form_errors(form.currency) }}
+        {{ form_widget(form.currency) }}
+    </div>
+{{ form_end(form) }}

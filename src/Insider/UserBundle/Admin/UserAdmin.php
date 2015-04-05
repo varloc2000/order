@@ -70,7 +70,9 @@ class UserAdmin extends Admin
                 ->add('plainPassword', 'text', array('required' => $passRequired))
                 ->add('status', 'choice', array('choices' => User::getStatusNames(), 'required'=> false))
                 ->add('promo', null, array('attr' => array('readonly' => 'readonly')))
-                ->add('balance', 'number')
+                ->add('balance', 'number', array(
+                    'help' => '(В долларах)'
+                ))
             ->end()
         ;
     }

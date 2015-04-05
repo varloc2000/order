@@ -93,6 +93,7 @@ class User extends BaseUser implements SoftDeleteInterface
 
     /**
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @var Currency
      */
     protected $currency;
 
@@ -221,6 +222,22 @@ class User extends BaseUser implements SoftDeleteInterface
     public function setAdditional($additional)
     {
         $this->additional = $additional;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBalanceInOwnerCurrency()
+    {
+        return round($this->balance / $this->currency->getCourse(), 2);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBalanceByCurrency(Currency $currency)
+    {
+        return $this->balance * $currency->getCourse();
     }
 
     /**

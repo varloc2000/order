@@ -99,6 +99,7 @@ sonata_admin:
         pager_links: 15
     templates:
         # default global templates
+        layout:  SonataAdminBundle::order_layout.html.twig
         action:  SonataAdminBundle:CRUD:action.html.twig
     security:
         handler: sonata.admin.security.handler.role

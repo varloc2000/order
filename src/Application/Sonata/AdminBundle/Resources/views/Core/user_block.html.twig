@@ -1,0 +1,14 @@
+{% block user_block %}
+    <li>
+        <a href="{{ path('profile_list') }}">
+            <i class="fa fa-user"></i>&nbsp;
+            Профиль
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('fos_user_security_logout') }}">
+            <i class="fa fa-sign-out"></i>&nbsp;
+            Выйти
+        </a>
+    </li>
+{% endblock %}

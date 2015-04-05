@@ -1,0 +1,3 @@
+insider_currency_user_currency_change:
+    path: /user/currency/change
+    defaults:  { _controller: InsiderCurrencyBundle:UserCurrency:changeUserCurrency }
