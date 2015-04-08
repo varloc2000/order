@@ -19,6 +19,35 @@
                 <target>Валюта</target>
             </trans-unit>
 
+            <trans-unit id="breadcrumb.link_refill_list">
+                <source>breadcrumb.link_refill_list</source>
+                <target>Пополнения</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_refill_create">
+                <source>breadcrumb.link_refill_create</source>
+                <target>Пополнить</target>
+            </trans-unit>
+            <trans-unit id="Refill.Main">
+                <source>Refill.Main</source>
+                <target>Пополнить</target>
+            </trans-unit>
+            <trans-unit id="Refill.History">
+                <source>Refill.History</source>
+                <target>История пополнений</target>
+            </trans-unit>
+            <trans-unit id="form.label_amount">
+                <source>form.label_amount</source>
+                <target>Сума</target>
+            </trans-unit>
+            <trans-unit id="form.label_currency">
+                <source>form.label_currency</source>
+                <target>Валюта</target>
+            </trans-unit>
+            <trans-unit id="form.label_comment">
+                <source>form.label_comment</source>
+                <target>Комментарий</target>
+            </trans-unit>
+
             <trans-unit id="breadcrumb.link_order_list">
                 <source>breadcrumb.link_order_list</source>
                 <target>Список заказов</target>
@@ -876,6 +905,14 @@
             <trans-unit id='action_recover'>
                 <source>action_recover</source>
                 <target>Восстановить</target>
+            </trans-unit>
+            <trans-unit id='action_refill'>
+                <source>action_refill</source>
+                <target>Пополнить баланс</target>
+            </trans-unit>
+            <trans-unit id='action_refill_list'>
+                <source>action_refill_list</source>
+                <target>История пополнения баланса</target>
             </trans-unit>
             <trans-unit id='link_recover'>
                 <source>link_recover</source>

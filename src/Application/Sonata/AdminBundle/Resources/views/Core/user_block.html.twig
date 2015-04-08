@@ -1,6 +1,6 @@
 {% block user_block %}
     <li>
-        <a href="{{ path('profile_list') }}">
+        <a href="{{ path('profile_edit', {id: app.user.id}) }}">
             <i class="fa fa-user"></i>&nbsp;
             Профиль
         </a>

@@ -92,6 +92,12 @@ class User extends BaseUser implements SoftDeleteInterface
     protected $balance = 0;
 
     /**
+     * @ORM\OneToMany(targetEntity="Insider\UserBundle\Entity\Refill", mappedBy="user")
+     * @var Refill
+     */
+    protected $refill;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
      * @var Currency
      */
@@ -167,7 +173,7 @@ class User extends BaseUser implements SoftDeleteInterface
     public function __construct()
     {
         parent::__construct();
-        $this->setCreatedAt( new \DateTime() );
+        $this->setCreatedAt(new \DateTime());
         $this->status = self::STATUS_REGISTERED;
         $this->enabled = true;
     }
@@ -222,22 +228,6 @@ class User extends BaseUser implements SoftDeleteInterface
     public function setAdditional($additional)
     {
         $this->additional = $additional;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBalanceInOwnerCurrency()
-    {
-        return round($this->balance / $this->currency->getCourse(), 2);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBalanceByCurrency(Currency $currency)
-    {
-        return $this->balance * $currency->getCourse();
     }
 
     /**
@@ -625,5 +615,21 @@ class User extends BaseUser implements SoftDeleteInterface
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return Refill
+     */
+    public function getRefill()
+    {
+        return $this->refill;
+    }
+
+    /**
+     * @param Refill $refill
+     */
+    public function setRefill(Refill $refill)
+    {
+        $this->refill = $refill;
     }
 }

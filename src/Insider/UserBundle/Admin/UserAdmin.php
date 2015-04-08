@@ -14,6 +14,7 @@ class UserAdmin extends Admin
     protected $formOptions = array(
         'validation_groups' => array()
     );
+
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -40,13 +41,14 @@ class UserAdmin extends Admin
                 'sortable' => false,
                 'template' => 'SonataAdminBundle:CRUD:list_user_info.html.twig',
             ))
-            ->add('balance', null, array('template' => 'SonataAdminBundle:CRUD:list_balance.html.twig'))
+            ->add('balance', null, array('template' => 'SonataAdminBundle:CRUD:list_user_currency_balance.html.twig'))
             ->add('createdAt', null, array('template' => 'SonataAdminBundle:CRUD:list_user_created_at.html.twig'))
             ->add('status', 'choice', array('choices' => User::getStatusNames(), 'sortable' => false))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
+                    'refill' => array(),
                     'delete' => array(),
                     'recover' => array(),
                 )
@@ -71,6 +73,7 @@ class UserAdmin extends Admin
                 ->add('status', 'choice', array('choices' => User::getStatusNames(), 'required'=> false))
                 ->add('promo', null, array('attr' => array('readonly' => 'readonly')))
                 ->add('balance', 'number', array(
+                    'attr' => array('readonly' => 'readonly'),
                     'help' => '(В долларах)'
                 ))
             ->end()

@@ -35,8 +35,14 @@ class DeliveryAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('title')
-            ->add('price')
-            ->add('titleCurrency')
+            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                    'show' => array(),
+                    'edit' => array(),
+                    'delete' => array(),
+                )
+            ))
         ;
     }
 

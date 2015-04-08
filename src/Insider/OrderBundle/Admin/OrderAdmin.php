@@ -67,8 +67,9 @@ class OrderAdmin extends Admin
 //                'admin_code' => 'insider_user.admin.user',
             ))
             ->add('title', null, array('template' => 'SonataAdminBundle:CRUD:list_title_with_date.html.twig'))
-            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
-            ->add('chinaPrice', null, array('template' => 'SonataAdminBundle:CRUD:list_china_price.html.twig'))
+            ->add('total', null, array('template' => 'SonataAdminBundle:CRUD:list_order_total_price_in_user_currency.html.twig'))
+            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price_in_user_currency.html.twig'))
+//            ->add('chinaPrice', null, array('template' => 'SonataAdminBundle:CRUD:list_china_price_in_user_currency.html.twig'))
             ->add('quantity')
             ->add('_action', 'actions', array(
                 'actions' => array(

@@ -31,6 +31,7 @@ class LoadOrderInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $order->setChinaPriceCurrency($this->getReference('dollar'));
         $order->setColor('Желтый');
         $order->setDescription('Полный комплект');
+        $order->setDelivery($this->getReference('delivery'));
 
         $manager->persist($order);
 
@@ -43,6 +44,7 @@ class LoadOrderInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $order2->setChinaPrice(0);
         $order2->setChinaPriceCurrency($this->getReference('dollar'));
         $order2->setQuantity(2);
+        $order2->setDelivery($this->getReference('delivery'));
 
         $manager->persist($order2);
 
@@ -56,6 +58,7 @@ class LoadOrderInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $order3->setChinaPriceCurrency($this->getReference('dollar'));
         $order3->setQuantity(1);
         $order3->setStatus(Order::STATUS_COMPLETE);
+        $order3->setDelivery($this->getReference('delivery'));
 
         $manager->persist($order3);
     }

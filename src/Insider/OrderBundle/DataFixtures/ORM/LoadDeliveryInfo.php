@@ -26,6 +26,7 @@ class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInte
         $delivery->setPrice(12);
         $delivery->setPriceCurrency($this->getReference('dollar'));
         $delivery->setDescription('Быстрая');
+        $this->setReference('delivery', $delivery);
 
         $manager->persist($delivery);
 

@@ -7,11 +7,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="Insider\CurrencyBundle\Entity\Repository\CurrencyRepository")
- * @ORM\Table(name="currency")
+ * @ORM\Entity
+ * @ORM\Table(name="tariff")
  * @ORM\HasLifecycleCallbacks()
  */
-class Currency
+class Tariff
 {
 
     /**
@@ -103,15 +103,6 @@ class Currency
     public function setSign($sign)
     {
         $this->sign = $sign;
-    }
-
-    /**
-     * @param $total
-     * @return float
-     */
-    public function convert($total)
-    {
-        return round((float) $total / $this->course, 2);
     }
 
     public function __toString()

@@ -4,6 +4,7 @@ namespace Insider\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Insider\CurrencyBundle\Entity\Currency;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
@@ -222,6 +223,22 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
     }
 
     /**
+     * @return mixed
+     */
+    public function getChinaPriceInOrderCurrency()
+    {
+        return round($this->chinaPrice / $this->chinaPriceCurrency->getCourse(), 2);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChinaPriceByCurrency(Currency $currency)
+    {
+        return round($this->chinaPrice / $currency->getCourse(), 2);
+    }
+
+    /**
      * @param mixed $chinaPrice
      */
     public function setChinaPrice($chinaPrice)
@@ -395,6 +412,22 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceInOrderCurrency()
+    {
+        return round($this->price / $this->priceCurrency->getCourse(), 2);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceByCurrency(Currency $currency)
+    {
+        return round($this->price / $currency->getCourse(), 2);
     }
 
     /**

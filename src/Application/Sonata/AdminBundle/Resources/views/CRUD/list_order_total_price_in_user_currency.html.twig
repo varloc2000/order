@@ -1,0 +1,12 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    Цена: {{ object.getPriceByCurrency(app.user.currency) }}&nbsp;<b>{{ app.user.currency.sign }}</b>
+    <br/>
+    Цена по Китаю: {{ object.getChinaPriceByCurrency(app.user.currency) }}&nbsp;<b>{{ app.user.currency.sign }}</b>
+    <br/>
+    Цена доставки: {{ object.delivery.price }}
+    <hr/>
+    Общая сумма: {{ object.price + object.chinaPrice + object.delivery.price }}
+
+{% endblock %}

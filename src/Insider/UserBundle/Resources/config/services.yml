@@ -5,8 +5,19 @@ services:
     insider_user.admin.user:
         class: Insider\UserBundle\Admin\UserAdmin
         arguments: [~, Insider\UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        scope: request
         tags:
             - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Пользователи", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+            - [ addChild, [ @insider_user.admin.refill ] ]
+
+    insider_user.admin.refill:
+        class: Insider\UserBundle\Admin\RefillAdmin
+        arguments: [~, Insider\UserBundle\Entity\Refill, SonataAdminBundle:CRUD]
+        scope: request
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Баланс пользователей", label_translator_strategy: sonata.admin.label.strategy.underscore, show_in_dashboard: false}
         calls:
             - [setTranslationDomain, [SonataAdminBundle]]
 

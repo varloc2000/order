@@ -49,10 +49,6 @@ class ProfileAdmin extends UserAdmin
                 ->remove('status')
                 ->remove('status')
                 ->remove('status')
-                ->add('balance', 'number', array(
-                    'attr' => array('readonly' => 'readonly'),
-                    'help' => '(В долларах)'
-                ))
             ->end()
             ->with('Profile.Additional', array(
                 'class' => 'col-md-8',
