@@ -46,7 +46,7 @@ class Refill
     protected $currency;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Insider\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Insider\UserBundle\Entity\User", inversedBy="refill")
      * @var \Insider\UserBundle\Entity\User
      */
     protected $user;
@@ -204,7 +204,7 @@ class Refill
     public function __toString()
     {
         if ($this->amount) {
-            return $this->amount;
+            return (string) $this->amount;
         }
 
         return 'Новое пополнение';

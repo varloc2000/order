@@ -2,19 +2,39 @@
 
 namespace Insider\UserBundle\Admin;
 
-use Insider\UserBundle\Entity\Refill;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class RefillAdmin extends Admin
 {
+    /**
+     * @var UserManagerInterface
+     */
+    protected $userManager;
+
     protected $parentAssociationMapping = 'user';
 
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'createdAt',
+    );
+
     /**
-     * @param DatagridMapper $datagridMapper
+     * {@inheritDoc}
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('edit');
+    }
+
+    /**
+     * {@inheritDoc}
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -24,49 +44,45 @@ class RefillAdmin extends Admin
     }
 
     /**
-     * @param ListMapper $listMapper
+     * {@inheritDoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->add('createdAt', null, array(
+                'label' => 'refill.created_at',
+            ))
+            ->add('author.username')
             ->add('amount')
+            ->add('amount_in_admin_currency', null, array(
+                'template' => 'SonataAdminBundle:CRUD:list_refill_total_in_user_currency.html.twig',
+            ))
             ->add('currency')
             ->add('comment')
         ;
     }
 
     /**
-     * @param FormMapper $formMapper
+     * {@inheritDoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Refill.Main', array(
-                'class' => 'col-md-4',
+            ->add('user', 'entity_hidden', array(
+                'class' => 'Insider\UserBundle\Entity\User'
+            ), array(
+                'admin_code' => 'insider_user.admin.user',
             ))
-                ->add('user', 'hidden', array(
-                    'data_class' => 'Insider\UserBundle\Entity\User'
-                ), array(
-                    'admin_code' => 'insider_user.admin.user',
-                ))
-                ->add('amount')
-                ->add('currency', null, array(
-                    'required' => true,
-                ))
-                ->add('comment', 'textarea')
-            ->end()
-            ->with('Refill.History', array(
-                'class' => 'col-md-8',
-                'description' => 'тут будет история'
+            ->add('amount')
+            ->add('currency', null, array(
+                'required' => true,
             ))
-//                ->add('user.refill', 'collection')
-            ->end()
+            ->add('comment', 'textarea')
         ;
     }
 
     /**
-     * @param ShowMapper $showMapper
+     * {@inheritDoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
@@ -76,5 +92,44 @@ class RefillAdmin extends Admin
             ->add('currency')
             ->add('comment')
         ;
+    }
+
+    /**
+     * Set author of refill
+     * {@inheritDoc}
+     */
+    public function prePersist($object)
+    {
+        if (!$object->getAuthor()) {
+            $user = $this->getConfigurationPool()
+                ->getContainer()
+                ->get('security.context')
+                ->getToken()
+                ->getUser()
+            ;
+
+            $object->setAuthor($user);
+        }
+    }
+
+    /**
+     * Add to user balance created refill in dollars
+     * {@inheritDoc}
+     */
+    public function postPersist($object)
+    {
+        if ($object->getAmount() && $user = $object->getUser()) {
+            $user->increaseBalance($object->getAmount() * $object->getCurrency()->getCourse());
+
+            $this->userManager->updateUser($user);
+        }
+    }
+
+    /**
+     * @param UserManagerInterface $userManager
+     */
+    public function setUserManager(UserManagerInterface $userManager)
+    {
+        $this->userManager = $userManager;
     }
 }

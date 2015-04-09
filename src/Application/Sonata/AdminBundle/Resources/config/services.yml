@@ -22,3 +22,9 @@ services:
         arguments: [@service_container]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    application_admin.type.entity_hidden:
+        class: Application\Sonata\AdminBundle\Form\Type\EntityHiddenType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type, alias: entity_hidden }

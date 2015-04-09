@@ -59,7 +59,7 @@
                                     {{ app.user.firstName }}&nbsp;{{ app.user.lastName }}
                                 {% endif %}
                                 |
-                                Актуальный баланс: {{ app.user.currency.convert(app.user.balance) }} {{ app.user.currency.sign }}
+                                <span class="badge">{{ app.user.currency.convert(app.user.balance) }} {{ app.user.currency.sign }}</span>
                                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">

@@ -247,6 +247,14 @@ class User extends BaseUser implements SoftDeleteInterface
     }
 
     /**
+     * @param mixed $balance
+     */
+    public function increaseBalance($balance)
+    {
+        $this->balance += $balance;
+    }
+
+    /**
      * @return mixed
      */
     public function getCity()

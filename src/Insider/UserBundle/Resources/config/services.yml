@@ -20,6 +20,7 @@ services:
             - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Баланс пользователей", label_translator_strategy: sonata.admin.label.strategy.underscore, show_in_dashboard: false}
         calls:
             - [setTranslationDomain, [SonataAdminBundle]]
+            - [setUserManager, [@fos_user.user_manager]]
 
     insider_user.admin.profile:
         class: Insider\UserBundle\Admin\ProfileAdmin

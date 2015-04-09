@@ -39,13 +39,33 @@
                 <source>form.label_amount</source>
                 <target>Сума</target>
             </trans-unit>
+            <trans-unit id="list.label_amount">
+                <source>list.label_amount</source>
+                <target>Сума</target>
+            </trans-unit>
             <trans-unit id="form.label_currency">
                 <source>form.label_currency</source>
+                <target>Валюта</target>
+            </trans-unit>
+            <trans-unit id="list.label_currency">
+                <source>list.label_currency</source>
                 <target>Валюта</target>
             </trans-unit>
             <trans-unit id="form.label_comment">
                 <source>form.label_comment</source>
                 <target>Комментарий</target>
+            </trans-unit>
+            <trans-unit id="list.label_comment">
+                <source>list.label_comment</source>
+                <target>Комментарий</target>
+            </trans-unit>
+            <trans-unit id="refill.created_at">
+                <source>refill.created_at</source>
+                <target>Дата</target>
+            </trans-unit>
+            <trans-unit id="list.label_author_username">
+                <source>list.label_author_username</source>
+                <target>Пополнил</target>
             </trans-unit>
 
             <trans-unit id="breadcrumb.link_order_list">

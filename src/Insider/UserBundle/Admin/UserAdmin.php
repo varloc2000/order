@@ -46,7 +46,6 @@ class UserAdmin extends Admin
             ->add('status', 'choice', array('choices' => User::getStatusNames(), 'sortable' => false))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'refill' => array(),
                     'delete' => array(),
