@@ -55,9 +55,25 @@
                 <source>form.label_comment</source>
                 <target>Комментарий</target>
             </trans-unit>
+            <trans-unit id="form.label_type">
+                <source>form.label_type</source>
+                <target>Тип</target>
+            </trans-unit>
+            <trans-unit id="list.label_amount_in_admin_currency">
+                <source>list.label_amount_in_admin_currency</source>
+                <target>Сумма</target>
+            </trans-unit>
             <trans-unit id="list.label_comment">
                 <source>list.label_comment</source>
                 <target>Комментарий</target>
+            </trans-unit>
+            <trans-unit id="list.label_type">
+                <source>list.label_type</source>
+                <target>Тип</target>
+            </trans-unit>
+            <trans-unit id="filter.label_type">
+                <source>filter.label_type</source>
+                <target>Тип</target>
             </trans-unit>
             <trans-unit id="refill.created_at">
                 <source>refill.created_at</source>

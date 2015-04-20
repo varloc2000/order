@@ -3,6 +3,7 @@
 namespace Insider\UserBundle\Admin;
 
 use FOS\UserBundle\Model\UserManagerInterface;
+use Insider\UserBundle\Entity\Refill;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -40,6 +41,7 @@ class RefillAdmin extends Admin
     {
         $datagridMapper
             ->add('createdAt')
+            ->add('type', 'doctrine_orm_string', array(), 'choice', array('choices' => Refill::getStatusNames()))
         ;
     }
 
@@ -53,11 +55,10 @@ class RefillAdmin extends Admin
                 'label' => 'refill.created_at',
             ))
             ->add('author.username')
-            ->add('amount')
+            ->add('type', 'choice', array('choices' => Refill::getStatusNames()))
             ->add('amount_in_admin_currency', null, array(
                 'template' => 'SonataAdminBundle:CRUD:list_refill_total_in_user_currency.html.twig',
             ))
-            ->add('currency')
             ->add('comment')
         ;
     }
@@ -73,11 +74,23 @@ class RefillAdmin extends Admin
             ), array(
                 'admin_code' => 'insider_user.admin.user',
             ))
+            ->add('type', 'choice', array(
+                'expanded' => true,
+                'multiple' => false,
+                'choices' => Refill::getStatusNames(),
+                'attr' => array(
+                    'class' => 'list-inline',
+                )
+            ))
             ->add('amount')
             ->add('currency', null, array(
                 'required' => true,
             ))
-            ->add('comment', 'textarea')
+            ->add('comment', 'textarea', array(
+                'attr' => array(
+                    'class' => 'form-control'
+                ),
+            ))
         ;
     }
 

@@ -1,5 +1,6 @@
 {% extends admin.getTemplate('base_list_field') %}
 
 {% block field %}
-        {{ app.user.currency.convert(object.amount * object.currency.course) }}&nbsp;<b>{{ app.user.currency.sign }}</b>
+    <p>Пополнено: {{ object.amount }} <b>{{ object.currency.sign }}</b></p>
+    <p>В текущей валюте: {{ app.user.currency.convert(object.amount * object.currency.course) }}&nbsp;<b>{{ app.user.currency.sign }}</b></p>
 {% endblock %}
