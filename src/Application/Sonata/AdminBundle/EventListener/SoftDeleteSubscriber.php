@@ -21,7 +21,7 @@ class SoftDeleteSubscriber implements EventSubscriber
 
         foreach ($uow->getScheduledEntityDeletions() as $entity)
         {
-            if ($entity instanceof SoftDeleteInterface) {
+            if ($entity instanceof SoftDeleteInterface && true === $entity->getIsActive()) {
                 $entity->setIsActive(false);
                 $em->persist($entity);
                 $em->flush($entity);

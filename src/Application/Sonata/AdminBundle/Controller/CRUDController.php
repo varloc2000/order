@@ -25,7 +25,7 @@ class CRUDController extends Controller
             throw new NotFoundHttpException(sprintf('unable to find the object with id : %s', $id));
         }
 
-        if (false === $this->admin->isGranted('RESTORE', $object)) {
+        if (false === $this->admin->isGranted('RECOVER', $object)) {
             throw new AccessDeniedException();
         }
 

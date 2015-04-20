@@ -103,15 +103,29 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
 
     public function loadModule(ObjectManager $manager)
     {
-        $ModuleVideo = new Module();
-        $ModuleVideo->setName('Заказ');
-        $ModuleVideo->setCode('ORDER');
+        $ModuleUser = new Module();
+        $ModuleUser->setName('Пользователи');
+        $ModuleUser->setCode('USER');
 
-        $ModuleVideo = new Module();
-        $ModuleVideo->setName('Пользователи');
-        $ModuleVideo->setCode('USER');
+        $manager->persist($ModuleUser);
 
-        $manager->persist($ModuleVideo);
+        $ModuleRole = new Module();
+        $ModuleRole->setName('Роли');
+        $ModuleRole->setCode('ROLE');
+
+        $manager->persist($ModuleRole);
+
+        $ModuleDelivery = new Module();
+        $ModuleDelivery->setName('Доставка');
+        $ModuleDelivery->setCode('DELIVERY');
+
+        $manager->persist($ModuleDelivery);
+
+        $ModuleCurrency = new Module();
+        $ModuleCurrency->setName('Курсы валют');
+        $ModuleCurrency->setCode('CURRENCY');
+
+        $manager->persist($ModuleCurrency);
     }
 
     /**

@@ -271,6 +271,26 @@
                 <source>list.label_parent_role</source>
                 <target>Родительская роль</target>
             </trans-unit>
+            <trans-unit id="form.label_parent_role">
+                <source>form.label_parent_role</source>
+                <target>Родительская роль</target>
+            </trans-unit>
+            <trans-unit id="form.label_access_by_modules">
+                <source>form.label_access_by_modules</source>
+                <target>Доступ к модулям</target>
+            </trans-unit>
+            <trans-unit id="form.label_module">
+                <source>form.label_module</source>
+                <target>Модуль</target>
+            </trans-unit>
+            <trans-unit id="form.label_access">
+                <source>form.label_access</source>
+                <target>Доступ</target>
+            </trans-unit>
+            <trans-unit id="form.label_name">
+                <source>form.label_name</source>
+                <target>Название</target>
+            </trans-unit>
 
             <trans-unit id="breadcrumb.link_order_category_list">
                 <source>breadcrumb.link_order_category_list</source>

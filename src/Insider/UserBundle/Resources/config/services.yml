@@ -44,7 +44,7 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: AccessByModule, show_in_dashboard: false, label_translator_strategy: sonata.admin.label.strategy.underscore}
         calls:
-            - [setTranslationDomain, [InsiderUserBundle]]
+            - [setTranslationDomain, [SonataAdminBundle]]
 
     insider_user.registration.form.type:
         class: Insider\UserBundle\Form\Type\RegistrationFormType
