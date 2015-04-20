@@ -222,7 +222,8 @@ file that was distributed with this source code.
 
 {% block textarea_widget %}
     {% spaceless %}
-        {{ form_widget(form, {'attr':  form.text.vars.attr|default({})|merge({'class': (form.text.vars.attr.class|default('form-control') )|trim})}) }}
+        {#{{ form.text.vars.attr|default({})|merge({'class': (form.text.vars.attr.class|default('form-control') )|trim}) }}#}
+        <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
     {% endspaceless %}
 {% endblock textarea_widget %}
 

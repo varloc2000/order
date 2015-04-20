@@ -71,7 +71,7 @@ class User extends BaseUser implements SoftDeleteInterface
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=5000)
      */
     protected $additional;
 

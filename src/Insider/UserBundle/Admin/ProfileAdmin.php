@@ -44,21 +44,20 @@ class ProfileAdmin extends UserAdmin
             ->with('User.Main', array(
                 'class' => 'col-md-4',
             ))
+                ->add('username', null, array(
+                    'attr' => array('readonly' => 'readonly'),
+                ))
+                ->add('email', null, array(
+                    'attr' => array('readonly' => 'readonly'),
+                ))
                 ->remove('role')
                 ->remove('plainPassword')
-                ->remove('status')
-                ->remove('status')
                 ->remove('status')
             ->end()
             ->with('Profile.Additional', array(
                 'class' => 'col-md-8',
                 'description' => 'Чтобы было легче с вами связаться, пожалуйста, укажите личные данные:',
             ))
-                ->add('firstName')
-                ->add('lastName')
-                ->add('phone')
-                ->add('skype')
-                ->add('vk')
             ->end()
         ;
     }

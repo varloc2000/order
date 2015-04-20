@@ -210,6 +210,14 @@
                 <source>form.label_promo</source>
                 <target>Промо код</target>
             </trans-unit>
+            <trans-unit id="form.label_additional">
+                <source>form.label_additional</source>
+                <target>Дополнительная информация (паспортные данные, адрес доставки)</target>
+            </trans-unit>
+            <trans-unit id="form.label_city">
+                <source>form.label_city</source>
+                <target>Город</target>
+            </trans-unit>
             <trans-unit id="form.label_first_name">
                 <source>form.label_first_name</source>
                 <target>Имя</target>
