@@ -28,6 +28,11 @@ class Tariff
     /**
      * @ORM\Column(type="float", nullable=false)
      */
+    protected $commission = 0;
+
+    /**
+     * @ORM\Column(type="float", nullable=false)
+     */
     protected $priceFirst;
 
     /**
@@ -162,5 +167,21 @@ class Tariff
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommission()
+    {
+        return $this->commission;
+    }
+
+    /**
+     * @param mixed $commission
+     */
+    public function setCommission($commission)
+    {
+        $this->commission = $commission;
     }
 }
