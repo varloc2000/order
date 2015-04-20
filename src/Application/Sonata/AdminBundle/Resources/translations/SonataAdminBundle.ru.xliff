@@ -297,6 +297,35 @@
                 <target>Список категорий заказов</target>
             </trans-unit>
 
+            <trans-unit id="breadcrumb.link_agreement_list">
+                <source>breadcrumb.link_agreement_list</source>
+                <target>Соглашения</target>
+            </trans-unit>
+            <trans-unit id="list.label_is_current">
+                <source>list.label_is_current</source>
+                <target>Актуальное</target>
+            </trans-unit>
+            <trans-unit id="show.label_is_current">
+                <source>show.label_is_current</source>
+                <target>Актуальное</target>
+            </trans-unit>
+            <trans-unit id="form.label_is_current">
+                <source>form.label_is_current</source>
+                <target>Актуальное</target>
+            </trans-unit>
+            <trans-unit id="show.label_name">
+                <source>show.label_name</source>
+                <target>Название</target>
+            </trans-unit>
+            <trans-unit id="show.label_text">
+                <source>show.label_text</source>
+                <target>Текст соглашения</target>
+            </trans-unit>
+            <trans-unit id="form.label_text">
+                <source>form.label_text</source>
+                <target>Текст соглашения</target>
+            </trans-unit>
+
             <trans-unit id="list.label_id">
                 <source>list.label_id</source>
                 <target>Номер</target>

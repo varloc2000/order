@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Tariff
 {
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -22,40 +21,36 @@ class Tariff
     protected $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="float", nullable=false)
      */
-    protected $sign;
+    protected $priceFirst;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @var \Insider\CurrencyBundle\Entity\Currency
      */
-    protected $course;
+    protected $priceFirstCurrency;
+
+    /**
+     * @ORM\Column(type="float", nullable=false)
+     */
+    protected $priceSecond;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
+     * @var \Insider\CurrencyBundle\Entity\Currency
+     */
+    protected $priceSecondCurrency;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    protected $isDefault = 0;
-
-    /**
-     * @return mixed
-     */
-    public function getCourse()
-    {
-        return $this->course;
-    }
-
-    /**
-     * @param mixed $course
-     */
-    public function setCourse($course)
-    {
-        $this->course = $course;
-    }
+    protected $isDefault = false;
 
     /**
      * @return mixed
@@ -76,6 +71,86 @@ class Tariff
     /**
      * @return mixed
      */
+    public function getIsDefault()
+    {
+        return $this->isDefault;
+    }
+
+    /**
+     * @param mixed $isDefault
+     */
+    public function setIsDefault($isDefault)
+    {
+        $this->isDefault = $isDefault;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceFirst()
+    {
+        return $this->priceFirst;
+    }
+
+    /**
+     * @param mixed $priceFirst
+     */
+    public function setPriceFirst($priceFirst)
+    {
+        $this->priceFirst = $priceFirst;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceFirstCurrency()
+    {
+        return $this->priceFirstCurrency;
+    }
+
+    /**
+     * @param mixed $priceFirstCurrency
+     */
+    public function setPriceFirstCurrency($priceFirstCurrency)
+    {
+        $this->priceFirstCurrency = $priceFirstCurrency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceSecond()
+    {
+        return $this->priceSecond;
+    }
+
+    /**
+     * @param mixed $priceSecond
+     */
+    public function setPriceSecond($priceSecond)
+    {
+        $this->priceSecond = $priceSecond;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getPriceSecondCurrency()
+    {
+        return $this->priceSecondCurrency;
+    }
+
+    /**
+     * @param Currency $priceSecondCurrency
+     */
+    public function setPriceSecondCurrency($priceSecondCurrency)
+    {
+        $this->priceSecondCurrency = $priceSecondCurrency;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTitle()
     {
         return $this->title;
@@ -87,45 +162,5 @@ class Tariff
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSign()
-    {
-        return $this->sign;
-    }
-
-    /**
-     * @param mixed $sign
-     */
-    public function setSign($sign)
-    {
-        $this->sign = $sign;
-    }
-
-    public function __toString()
-    {
-        return $this->sign
-            ? $this->sign
-            : 'Новая валюта'
-        ;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsDefault()
-    {
-        return $this->isDefault;
-    }
-
-    /**
-     * @param boolean $isDefault
-     */
-    public function setIsDefault($isDefault)
-    {
-        $this->isDefault = $isDefault;
     }
 }

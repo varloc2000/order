@@ -46,6 +46,14 @@ services:
         calls:
             - [setTranslationDomain, [SonataAdminBundle]]
 
+    insider_user.admin.agreement:
+        class: Insider\UserBundle\Admin\AgreementAdmin
+        arguments: [~, Insider\UserBundle\Entity\Agreement, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Соглашения", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+
     insider_user.registration.form.type:
         class: Insider\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]

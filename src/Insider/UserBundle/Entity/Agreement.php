@@ -21,17 +21,17 @@ class Agreement
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    protected $isCurrent = 0;
+    protected $isCurrent = false;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=5000)
+     * @ORM\Column(type="string", length=5000, nullable=true)
      */
     private $text;
 
@@ -89,5 +89,16 @@ class Agreement
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name
+            ? $this->name
+            : 'Новое соглашение'
+        ;
     }
 }

@@ -5,6 +5,7 @@ namespace Insider\UserBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Insider\CurrencyBundle\Entity\Tariff;
 use Insider\UserBundle\Entity\Module;
 use Insider\UserBundle\Entity\Role;
 use Insider\UserBundle\Entity\User;
@@ -18,6 +19,7 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $this->loadRole($manager);
+        $this->loadTariff($manager);
         $this->loadUser($manager);
         $this->loadModule($manager);
         $this->loadAccess($manager);
@@ -65,6 +67,20 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $RoleClient->setParentRole(Role::ROLE_CLIENT);
         $this->setReference('client_role', $RoleClient);
         $manager->persist($RoleClient);
+    }
+
+    public function loadTariff(ObjectManager $manager)
+    {
+        $tariff = new Tariff();
+        $tariff->setIsDefault(true);
+        $tariff->setTitle('Единый тариф');
+        $tariff->setPriceFirst(13);
+        $tariff->setPriceSecond(10);
+        $tariff->setPriceFirstCurrency($this->getReference('dollar'));
+        $tariff->setPriceSecondCurrency($this->getReference('dollar'));
+
+        $this->setReference('tariff', $tariff);
+        $manager->persist($tariff);
     }
 
     public function loadUser(ObjectManager $manager)
@@ -126,6 +142,18 @@ class LoadAdminInfoData extends AbstractFixture implements OrderedFixtureInterfa
         $ModuleCurrency->setCode('CURRENCY');
 
         $manager->persist($ModuleCurrency);
+
+        $ModuleAgreement = new Module();
+        $ModuleAgreement->setName('Соглашения');
+        $ModuleAgreement->setCode('AGREEMENT');
+
+        $manager->persist($ModuleAgreement);
+
+        $ModuleTariff = new Module();
+        $ModuleTariff->setName('Тарифы');
+        $ModuleTariff->setCode('TARIFF');
+
+        $manager->persist($ModuleAgreement);
     }
 
     /**
