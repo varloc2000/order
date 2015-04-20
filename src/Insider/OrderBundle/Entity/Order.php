@@ -93,13 +93,11 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank()
      */
     protected $size;
 
     /**
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank()
      */
     protected $color;
 

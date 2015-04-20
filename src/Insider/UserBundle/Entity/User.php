@@ -13,14 +13,8 @@ use Application\Sonata\AdminBundle\Entity\SoftDeleteInterface;
 
 /**
  * @ORM\Entity(repositoryClass="Insider\UserBundle\Entity\Repository\UserRepository")
- * @ORM\Table(
- *     name="user",
- *     uniqueConstraints={@ORM\UniqueConstraint(name="promo", columns={"promo"}) }
- * )
+ * @ORM\Table(name="user")
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity(
- *     fields={"email"},
- *     message="Такой адрес электронной почты уже существует!")
  */
 class User extends BaseUser implements SoftDeleteInterface
 {

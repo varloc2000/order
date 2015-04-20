@@ -27,19 +27,33 @@
                         >
                             <div class="form-group">
                                 {{ form_errors(form.email) }}
+                                {{ form_label(form.email) }}
                                 {{ form_widget(form.email, {attr: {class: 'form-control', placeholder: 'Email'}}) }}
                             </div>
                             <div class="form-group">
                                 {{ form_errors(form.username) }}
+                                {{ form_label(form.username) }}
                                 {{ form_widget(form.username, {attr: {class: 'form-control', placeholder: 'Имя пользователя'}}) }}
                             </div>
                             <div class="form-group">
                                 {{ form_errors(form.plainPassword.first) }}
+                                {{ form_label(form.plainPassword.first) }}
                                 {{ form_widget(form.plainPassword.first, {attr: {class: 'form-control', placeholder: 'Пароль'}}) }}
                             </div>
                             <div class="form-group">
                                 {{ form_errors(form.plainPassword.second) }}
+                                {{ form_label(form.plainPassword.second) }}
                                 {{ form_widget(form.plainPassword.second, {attr: {class: 'form-control', placeholder: 'Повторите пароль'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.promo) }}
+                                {{ form_label(form.promo) }}
+                                {{ form_widget(form.promo, {attr: {class: 'form-control', placeholder: 'Промо код'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_errors(form.agree) }}
+                                {{ form_widget(form.agree, {attr: {class: 'form-control'}}) }}
+                                <a href="{{ path('insider_user_agreement') }}" target="_blank">Пользовательское соглашение</a>
                             </div>
                             <div class="form-group">
                                 <input

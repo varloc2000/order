@@ -31,8 +31,10 @@ class UniqueLoginValidator extends ConstraintValidator
                 $this->context->addViolationAt(
                     'username',
                     $constraint->message,
-                    array('%string%' => $userName,
-                        '%new_string%' => $userName.$i)
+                    array(
+                        '%string%' => $userName,
+                        '%new_string%' => $userName.$i
+                    )
                 );
             }
         }

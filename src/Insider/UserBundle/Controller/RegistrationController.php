@@ -107,6 +107,7 @@ class RegistrationController extends BaseController
 
     public function registerAction(Request $request)
     {
+
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -114,24 +115,7 @@ class RegistrationController extends BaseController
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->container->get('event_dispatcher');
 
-        if ( $token = $this->container->get('security.context')->getToken() )
-        {
-            $user = $token->getUser();
-            // если пользователь уже зарегистрирован и активировал аккаунт
-            if ( $user instanceof User && $user->getPassword() )
-                // редикерт на главную
-                return new RedirectResponse($this->container->get('router')->generate('homepage'));
-
-            if ( !$user instanceof User )
-            {
-                $user = $userManager->findUserByUsernameOrEmail($user);
-                if ( !$user instanceof User )
-                    $user = $userManager->createUser();
-            }
-        }
-        else
-            $user = $userManager->createUser();
-
+        $user = $userManager->createUser();
         $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);
@@ -143,12 +127,10 @@ class RegistrationController extends BaseController
 
         $form = $formFactory->createForm();
         $form->setData($user);
+        $form->get('promo')->setData($request->query->get('promo'));
 
         if ('POST' === $request->getMethod()) {
             $form->handleRequest($request);
-
-            if ( count($errorList) )
-                    $form->addError(new FormError($errorList->get(0)->getMessage()));
 
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
@@ -167,8 +149,24 @@ class RegistrationController extends BaseController
             }
         }
 
-        return $this->container->get('templating')->renderResponse('InsiderUserBundle:Registration:register.html.'.$this->getEngine(), array(
-                'form' => $form->createView(), 'user' => $user
-            ));
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Template()
+     */
+    public function agreementAction()
+    {
+        $repo = $this->container->get('doctrine')->getRepository('InsiderUserBundle:Agreement');
+
+        $currentAgreement = $repo->findOneByIsCurrent(true);
+
+        if (!$currentAgreement) {
+            throw new NotFoundHttpException('Agreement not found!');
+        }
+
+        return array('agreement' => $currentAgreement);
     }
 }

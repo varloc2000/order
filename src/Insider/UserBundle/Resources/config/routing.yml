@@ -1,0 +1,3 @@
+insider_user_agreement:
+    path: /agreement
+    defaults:  { _controller: InsiderUserBundle:Registration:agreement }

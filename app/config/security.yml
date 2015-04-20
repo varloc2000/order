@@ -135,11 +135,12 @@ security:
                 failure_handler: insider_user.authentication.handler
                 success_handler: insider_user.authentication.handler
                 always_use_default_target_path: true
-                default_target_path: /profile
+                default_target_path: /
             logout:       true
             anonymous:    true
 
     access_control:
+        - { path: ^/agreement, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

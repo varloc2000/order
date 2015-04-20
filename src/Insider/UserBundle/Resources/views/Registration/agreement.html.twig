@@ -1,16 +1,18 @@
 {% extends "InsiderUserBundle::layout.html.twig" %}
 
+{% block login_controls %}
+{% endblock login_controls %}
+
 {% block fos_user_content %}
     <div id="container">
         <div class="article">
             <div class="block-content-wrapper">
-                <div class="login">
-                    <h1>Восстановление пароля</h1>
-                    <div class="form-group">
-                        <p>{{ 'resetting.password_already_requested'|trans({}, 'FOSUserBundle') }}</p>
+                <div class="block-content text-center">
+                    <div class="login" style="width: 800px;">
+                        {{ agreement.text|raw }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock fos_user_content %}

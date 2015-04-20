@@ -8,6 +8,7 @@
     {% block javascripts %}{% endblock javascripts %}
 </head>
 <body>
+{% block login_controls %}
 <div>
     <section class="container" style="margin-top: 10px;">
         <div class="login">
@@ -31,6 +32,7 @@
 
     </section>
 </div>
+{% endblock login_controls %}
 
 <div>
     {% block fos_user_content %}

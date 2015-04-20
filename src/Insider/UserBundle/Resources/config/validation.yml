@@ -1,4 +1,4 @@
-AllBY\UserBundle\Entity\User:
+Insider\UserBundle\Entity\User:
     constraints:
       - Insider\UserBundle\Validator\Constraints\UniqueLogin: ~
     properties:
@@ -13,11 +13,11 @@ FOS\UserBundle\Model\User:
             message: 'Такой email уже используется!'
             groups: [InsiderRegistration]
          - Insider\UserBundle\Validator\Constraints\UniqueLogin:
-             groups: [InsiderRegistration]
+             groups: [Registration]
     properties:
         email:
             - NotBlank:
                 groups: [InsiderRegistration]
             - Email:
                 message: 'Неверный формат email.'
-                groups: [InsiderRegistration]
+                groups: [Registration]

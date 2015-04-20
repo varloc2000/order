@@ -109,7 +109,8 @@ class OrderAdmin extends Admin
                 'class' => 'col-md-4',
             ))
                 ->add('user', null, array(), array(
-                    'admin_code' => 'insider_user.admin.user'
+                    'admin_code' => 'insider_user.admin.user',
+                    'required' => true,
                 ))
                 ->add('link')
                 ->add('title')
@@ -133,8 +134,12 @@ class OrderAdmin extends Admin
             ))
                 ->add('delivery')
                 ->add('quantity', 'number')
-                ->add('size')
-                ->add('color')
+                ->add('size', null, array(
+                    'required' => false,
+                ))
+                ->add('color', null, array(
+                    'required' => false,
+                ))
                 ->add('file', 'file', $fileFieldOptions)
                 ->add('category')
                 ->add('description', 'textarea', array(
