@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class OrderAdmin extends Admin
@@ -20,7 +21,6 @@ class OrderAdmin extends Admin
         '_sort_order' => 'DESC',
         '_sort_by' => 'createdAt',
     );
-
 
     public function createQuery($context = 'list')
     {
@@ -50,6 +50,7 @@ class OrderAdmin extends Admin
             ->add('delivery')
             ->add('quantity')
             ->add('category')
+            ->add('status', 'doctrine_orm_string', array(), 'choice', array('choices' => Order::getStatusNames()))
         ;
     }
 
@@ -144,6 +145,9 @@ class OrderAdmin extends Admin
                 ->add('category')
                 ->add('description', 'textarea', array(
                     'required' => false,
+                    'attr' => array(
+                        'class' => 'form-control'
+                    ),
                 ))
             ->end()
         ;

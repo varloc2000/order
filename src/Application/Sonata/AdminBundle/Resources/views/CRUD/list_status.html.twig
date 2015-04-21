@@ -13,6 +13,33 @@ file that was distributed with this source code.
 
 {% block field %}
     {% if value is not null %}
-        <span class="label label-success">{{ value|orderStatusLabel }}</span>
+        <p class="text-center"><span class="label label-success">{{ value|orderStatusLabel }}</span></p>
+    {% endif %}
+
+    {% if admin.isGranted('CHANGE_STATUS', object) %}
+        <div>
+            {% if admin.hasRoute('change_status') %}
+                {% if object.prevStatus is not null %}
+                    {% set title = 'order_action_' ~ object.prevStatus %}
+                    <a
+                        href="{{ admin.generateObjectUrl('change_status', object, {status: object.prevStatus}) }}"
+                        class="btn btn-default btn-small pull-left"
+                        title="{{ title|trans({}, 'SonataAdminBundle') }}"
+                        >
+                        <i class="fa fa-backward"></i>
+                    </a>
+                {% endif %}
+                {% if object.nextStatus is not null %}
+                    {% set title = 'order_action_' ~ object.getNextStatus %}
+                    <a
+                        href="{{ admin.generateObjectUrl('change_status', object, {status: object.nextStatus}) }}"
+                        class="btn btn-default btn-small pull-right"
+                        title="{{ title|trans({}, 'SonataAdminBundle') }}"
+                        >
+                        <i class="fa fa-forward"></i>
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock %}

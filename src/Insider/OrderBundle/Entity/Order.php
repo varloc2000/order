@@ -197,6 +197,30 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
     }
 
     /**
+     * Return next status number or null if order is completed
+     * @return int|null
+     */
+    public function getNextStatus()
+    {
+        return array_key_exists($this->status + 1, self::$statusNames)
+            ? $this->status + 1
+            : null
+        ;
+    }
+
+    /**
+     * Return previous status number or null if order is new
+     * @return int|null
+     */
+    public function getPrevStatus()
+    {
+        return array_key_exists($this->status - 1, self::$statusNames)
+            ? $this->status - 1
+            : null
+        ;
+    }
+
+    /**
      * @return mixed
      */
     public function getCategory()

@@ -2,6 +2,7 @@
 
 namespace Application\Sonata\AdminBundle\Controller;
 
+use Insider\OrderBundle\Entity\Order;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -36,8 +37,8 @@ class CRUDController extends Controller
             try {
                 $object->setIsActive(true);
                 $this->admin->preUpdate($object);
-                $doctrine = $this->admin->getConfigurationPool()->getContainer()->get('doctrine');
-                $em = $doctrine->getEntityManager();
+                $doctrine = $this->getDoctrine();
+                $em = $doctrine->getManager();
                 $em->persist($object);
                 $em->flush();
 
@@ -80,5 +81,24 @@ class CRUDController extends Controller
             'action'     => 'recover',
             'csrf_token' => $this->getCsrfToken('sonata.recover')
         ));
+    }
+
+    public function changeOrderStatusAction($id, $status)
+    {
+        $id = $this->get('request')->get($this->admin->getIdParameter());
+        $object = $this->admin->getObject($id);
+
+        if (!$object instanceof Order) {
+            throw new \LogicException('Change status action available only for Order instance');
+        }
+
+        $object->setStatus($status);
+
+        $doctrine = $this->getDoctrine();
+        $em = $doctrine->getManager();
+        $em->persist($object);
+        $em->flush();
+
+        return new RedirectResponse($this->admin->generateUrl('list'));
     }
 }

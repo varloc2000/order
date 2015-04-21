@@ -11,6 +11,13 @@ services:
         calls:
             - [ setSecurityContext, [@security.context]]
 
+    insider_order.order_actions.extension:
+        class: Insider\OrderBundle\Admin\Extension\OrderActionsAdminExtension
+        tags:
+            - { name: sonata.admin.extension, target: insider_order.admin.order }
+        calls:
+            - [ setSecurityContext, [@security.context]]
+
     insider_order.admin.order_category:
         class: Insider\OrderBundle\Admin\OrderCategoryAdmin
         arguments: [~, Insider\OrderBundle\Entity\OrderCategory, SonataAdminBundle:CRUD]

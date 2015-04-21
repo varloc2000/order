@@ -2,6 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="SonataAdminBundle.en.xliff" >
         <body>
+            <trans-unit id="order_action_0">
+                <source>order_action_0</source>
+                <target>Новый заказ</target>
+            </trans-unit>
+            <trans-unit id="order_action_1">
+                <source>order_action_1</source>
+                <target>Открыть заказ (На выкуп)</target>
+            </trans-unit>
+            <trans-unit id="order_action_2">
+                <source>order_action_2</source>
+                <target>Заказ выкуплен</target>
+            </trans-unit>
+            <trans-unit id="order_action_3">
+                <source>order_action_3</source>
+                <target>Заказ отправлен</target>
+            </trans-unit>
+            <trans-unit id="order_action_4">
+                <source>order_action_4</source>
+                <target>Заказ получен (В минском офисе)</target>
+            </trans-unit>
+            <trans-unit id="order_action_5">
+                <source>order_action_5</source>
+                <target>Завершить заказ (Отдан клиенту)</target>
+            </trans-unit>
             <trans-unit id="list.label__action">
                 <source>list.label__action</source>
                 <target>Действия</target>
