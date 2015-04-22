@@ -2,6 +2,7 @@
 
 namespace Insider\OrderBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -39,6 +40,16 @@ class Delivery
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
      */
     protected $priceCurrency;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Insider\OrderBundle\Entity\Weight")
+     */
+    protected $weights;
+
+    public function __construct()
+    {
+        $this->weights = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -118,6 +129,30 @@ class Delivery
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getWeights()
+    {
+        return $this->weights;
+    }
+
+    /**
+     * @param ArrayCollection $weights
+     */
+    public function setWeights(ArrayCollection $weights)
+    {
+        $this->weights = $weights;
+    }
+
+    /**
+     * @param Weight $weight
+     */
+    public function addWeights(Weight $weight)
+    {
+        $this->weights->add($weight);
     }
 
     public function __toString()
