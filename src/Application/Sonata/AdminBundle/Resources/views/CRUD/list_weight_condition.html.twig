@@ -1,0 +1,14 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% if object.isCustom() %}
+        {{ object.custom }}
+    {% else %}
+        {{ object.minWeight|default('От менее') }} -
+        {{ object.maxWeight|default('И более') }} кг.
+    {% endif %}
+
+    {% if object.label %}
+        <span class="badge">{{ object.label }}</span>
+    {% endif %}
+{% endblock %}

@@ -56,6 +56,18 @@ class DeliveryAdmin extends Admin
             ->add('description')
             ->add('price')
             ->add('priceCurrency')
+            ->add('weights', 'sonata_type_collection', array(
+                'type_options' => array(
+                    'delete' => true,
+                ),
+                'btn_catalogue' => true,
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
+                'btn_add' => true,
+                'btn_delete' => true,
+            ))
         ;
     }
 

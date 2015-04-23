@@ -42,7 +42,7 @@ class Delivery
     protected $priceCurrency;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Insider\OrderBundle\Entity\Weight")
+     * @ORM\OneToMany(targetEntity="Insider\OrderBundle\Entity\DeliveryWeightPrice", mappedBy="delivery", indexBy="delivery", cascade={"persist", "remove"})
      */
     protected $weights;
 
@@ -160,6 +160,6 @@ class Delivery
         return $this->title
             ? $this->title
             : 'Новая доставка'
-            ;
+        ;
     }
 }

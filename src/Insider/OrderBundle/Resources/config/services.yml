@@ -34,6 +34,22 @@ services:
         calls:
             - [setTranslationDomain, [SonataAdminBundle]]
 
+    insider_order.admin.delivery_weight_price:
+        class: Insider\OrderBundle\Admin\DeliveryWeightPriceAdmin
+        arguments: [~, Insider\OrderBundle\Entity\DeliveryWeightPrice, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Доставка-Вес", show_in_dashboard: false, label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+
+    insider_order.admin.weight:
+        class: Insider\OrderBundle\Admin\WeightAdmin
+        arguments: [~, Insider\OrderBundle\Entity\Weight, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: "Основное", label: "Веса", label_translator_strategy: sonata.admin.label.strategy.underscore}
+        calls:
+            - [setTranslationDomain, [SonataAdminBundle]]
+
     insider_order.admin.order:
         class: Insider\OrderBundle\Admin\OrderAdmin
         arguments: [~, Insider\OrderBundle\Entity\Order, SonataAdminBundle:CRUD]

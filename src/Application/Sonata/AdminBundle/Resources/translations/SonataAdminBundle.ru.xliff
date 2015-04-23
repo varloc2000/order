@@ -42,6 +42,67 @@
                 <source>filter.label_price_currency</source>
                 <target>Валюта</target>
             </trans-unit>
+            <trans-unit id="form.label_weights">
+                <source>form.label_weights</source>
+                <target>Стоимость по весам</target>
+            </trans-unit>
+            <trans-unit id="form.label_weight">
+                <source>form.label_weight</source>
+                <target>Вес</target>
+            </trans-unit>
+
+            <trans-unit id="breadcrumb.link_weight_list">
+                <source>breadcrumb.link_weight_list</source>
+                <target>Список весов</target>
+            </trans-unit>
+            <trans-unit id="list.label_condition">
+                <source>list.label_condition</source>
+                <target>Характеристики</target>
+            </trans-unit>
+            <trans-unit id="filter.label_label">
+                <source>filter.label_label</source>
+                <target>Пометка</target>
+            </trans-unit>
+            <trans-unit id="form.label_label">
+                <source>form.label_label</source>
+                <target>Пометка</target>
+            </trans-unit>
+            <trans-unit id="filter.label_minless">
+                <source>filter.label_minless</source>
+                <target>Без минимального веса</target>
+            </trans-unit>
+            <trans-unit id="form.label_minless">
+                <source>form.label_minless</source>
+                <target>Без минимального веса</target>
+            </trans-unit>
+            <trans-unit id="filter.label_min_weight">
+                <source>filter.label_min_weight</source>
+                <target>Минимальный вес</target>
+            </trans-unit>
+            <trans-unit id="form.label_min_weight">
+                <source>form.label_min_weight</source>
+                <target>Минимальный вес</target>
+            </trans-unit>
+            <trans-unit id="filter.label_max_weight">
+                <source>filter.label_max_weight</source>
+                <target>Максимальный вес</target>
+            </trans-unit>
+            <trans-unit id="form.label_max_weight">
+                <source>form.label_max_weight</source>
+                <target>Максимальный вес</target>
+            </trans-unit>
+            <trans-unit id="filter.label_maxless">
+                <source>filter.label_maxless</source>
+                <target>Без максимального веса</target>
+            </trans-unit>
+            <trans-unit id="form.label_maxless">
+                <source>form.label_maxless</source>
+                <target>Без максимального веса</target>
+            </trans-unit>
+            <trans-unit id="form.label_custom">
+                <source>form.label_custom</source>
+                <target>Особое значение</target>
+            </trans-unit>
 
             <trans-unit id="breadcrumb.link_refill_list">
                 <source>breadcrumb.link_refill_list</source>

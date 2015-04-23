@@ -25,7 +25,7 @@ class Weight
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Insider\OrderBundle\Entity\Delivery")
+     * @ORM\OneToMany(targetEntity="Insider\OrderBundle\Entity\DeliveryWeightPrice", mappedBy="weight", indexBy="weight", cascade={"persist", "remove"})
      */
     protected $deliveries;
 
@@ -35,9 +35,9 @@ class Weight
     protected $label;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      */
-    protected $type = self::TYPE_KILO;
+    protected $type;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -60,6 +60,22 @@ class Weight
     protected $maxless = false;
 
     /**
+     * @var array
+     */
+    private static $typeNames = array(
+        self::TYPE_KILO => "Стоимость за килограмм",
+        self::TYPE_CUSTOM => "Особый вес",
+    );
+
+    /**
+     * @return array
+     */
+    public static function getTypeNames()
+    {
+        return self::$typeNames;
+    }
+
+    /**
      * Need to fill if weight $this->type is self::TYPE_CUSTOM
      * @ORM\Column(type="string", nullable=true)
      */
@@ -67,6 +83,7 @@ class Weight
 
     public function __construct()
     {
+        $this->type = self::TYPE_KILO;
         $this->deliveries = new ArrayCollection();
     }
 
@@ -215,13 +232,25 @@ class Weight
     }
 
     /**
+     * @return bool
+     */
+    public function isCustom()
+    {
+        return $this->type === self::TYPE_CUSTOM;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
-        return $this->type
-            ? (string) $this->type
-            : 'Новый вес'
+        if (!$this->id) {
+            return 'Новый вес';
+        }
+
+        return $this->isCustom()
+            ? (string) $this->custom
+            : (string) $this->minWeight . ' - ' . $this->maxWeight
         ;
     }
 }
