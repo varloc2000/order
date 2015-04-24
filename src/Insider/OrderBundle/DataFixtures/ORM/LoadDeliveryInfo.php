@@ -74,7 +74,6 @@ class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInte
     {
         $delivery = new Delivery();
         $delivery->setTitle('Авиа - до 10 дней');
-        $delivery->setPrice(12);
         $delivery->setPriceCurrency($this->getReference('dollar'));
         $delivery->setDescription('Обычно 3-6 дней.');
         $this->setReference('delivery', $delivery);
@@ -83,7 +82,6 @@ class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInte
 
         $delivery2 = new Delivery();
         $delivery2->setTitle('Ж\Д / Авто - до 20 дней');
-        $delivery2->setPrice(0);
         $delivery2->setPriceCurrency($this->getReference('dollar'));
         $delivery2->setDescription('Обычно 15-25 дней.');
         $this->setReference('delivery1', $delivery2);
@@ -92,7 +90,6 @@ class LoadDeliveryInfoData extends AbstractFixture implements OrderedFixtureInte
 
         $delivery3 = new Delivery();
         $delivery3->setTitle('Морем - до 50 дней');
-        $delivery3->setPrice(12);
         $delivery3->setPriceCurrency($this->getReference('dollar'));
         $delivery3->setDescription('Обычно 30-40 дней.');
         $this->setReference('delivery2', $delivery3);

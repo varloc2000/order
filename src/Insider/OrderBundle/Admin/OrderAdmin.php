@@ -68,8 +68,9 @@ class OrderAdmin extends Admin
 //                'admin_code' => 'insider_user.admin.user',
             ))
             ->add('title', null, array('template' => 'SonataAdminBundle:CRUD:list_title_with_date.html.twig'))
+            ->add('delivery')
             ->add('total', null, array('template' => 'SonataAdminBundle:CRUD:list_order_total_price_in_user_currency.html.twig'))
-            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price_in_user_currency.html.twig'))
+            ->add('weight')
 //            ->add('chinaPrice', null, array('template' => 'SonataAdminBundle:CRUD:list_china_price_in_user_currency.html.twig'))
             ->add('quantity')
             ->add('_action', 'actions', array(
@@ -99,6 +100,7 @@ class OrderAdmin extends Admin
             $file = $filemanager->get($cdnPath);
 
             if (is_object($file)) {
+                $fileFieldOptions['required'] = false;
                 $fileFieldOptions['help'] = '<img src="' . $file->getWebPath() . '" alt="' . $order->getTitle() . '" title="' . $order->getTitle() . '" style="max-width: 100px"/>';
             }
         } else {
@@ -119,7 +121,9 @@ class OrderAdmin extends Admin
             ->with('Order.Price', array(
                 'class' => 'col-md-4',
             ))
-                ->add('price', 'number')
+                ->add('price', 'number', array(
+                    'property_path' => 'priceInOrderCurrency'
+                ))
                 ->add('priceCurrency', null, array(
                     'empty_value' => false,
                 ))
@@ -127,7 +131,9 @@ class OrderAdmin extends Admin
             ->with('Order.ChinaPrice', array(
                 'class' => 'col-md-4',
             ))
-                ->add('chinaPrice', 'number')
+                ->add('chinaPrice', 'number', array(
+                    'property_path' => 'chinaPriceInOrderCurrency'
+                ))
                 ->add('chinaPriceCurrency')
             ->end()
             ->with('Order.Details', array(
@@ -135,6 +141,7 @@ class OrderAdmin extends Admin
             ))
                 ->add('delivery')
                 ->add('quantity', 'number')
+                ->add('weight')
                 ->add('size', null, array(
                     'required' => false,
                 ))

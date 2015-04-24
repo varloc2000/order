@@ -1,12 +1,23 @@
 {% extends admin.getTemplate('base_list_field') %}
 
 {% block field %}
-    Цена: {{ object.getPriceByCurrency(app.user.currency) }}&nbsp;<b>{{ app.user.currency.sign }}</b>
-    <br/>
-    Цена по Китаю: {{ object.getChinaPriceByCurrency(app.user.currency) }}&nbsp;<b>{{ app.user.currency.sign }}</b>
-    <br/>
-    Цена доставки: {{ object.delivery.price }}
+    {% set userCurency = app.user.currency %}
+    {% set userCurencySign = userCurency.sign %}
+    <p>
+        Цена: {{ userCurency.convert(object.getPrice) }}&nbsp;<b>{{ userCurencySign }}</b>
+    </p>
+    <p>
+        Цена по Китаю: {{ userCurency.convert(object.getChinaPrice) }}&nbsp;<b>{{ userCurencySign }}</b>
+    </p>
+    {% set deliveryPrice = object.delivery.getPriceByWeight(object.weight) %}
+    {% if null != deliveryPrice %}
+        <p>
+            Цена доставки: {{ userCurency.convert(deliveryPrice) }}&nbsp;<b>{{ userCurencySign }}</b>
+        </p>
+    {% endif %}
     <hr/>
-    Общая сумма: {{ object.price + object.chinaPrice + object.delivery.price }}
-
+    {% set fullPrice = object.getPrice + object.getChinaPrice + deliveryPrice %}
+    <p>
+        Общая сумма: {{ userCurency.convert(fullPrice) }}&nbsp;<b>{{ userCurencySign }}</b>
+    </p>
 {% endblock %}

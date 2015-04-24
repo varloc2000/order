@@ -177,6 +177,18 @@
                 <source>list.label_path</source>
                 <target>Фото</target>
             </trans-unit>
+            <trans-unit id="list.label_total">
+                <source>list.label_total</source>
+                <target>Стоимость</target>
+            </trans-unit>
+            <trans-unit id="list.label_delivery">
+                <source>list.label_delivery</source>
+                <target>Доставка</target>
+            </trans-unit>
+            <trans-unit id="list.label_weight">
+                <source>list.label_weight</source>
+                <target>Вес (кг)</target>
+            </trans-unit>
 
             <trans-unit id="breadcrumb.link_currency_list">
                 <source>breadcrumb.link_currency_list</source>

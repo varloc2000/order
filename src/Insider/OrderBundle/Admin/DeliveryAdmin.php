@@ -22,7 +22,7 @@ class DeliveryAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('title')
-            ->add('price')
+//            ->add('price')
             ->add('priceCurrency')
         ;
     }
@@ -35,7 +35,7 @@ class DeliveryAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('title')
-            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
+//            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -54,7 +54,6 @@ class DeliveryAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('price')
             ->add('priceCurrency')
             ->add('weights', 'sonata_type_collection', array(
                 'type_options' => array(
@@ -80,8 +79,8 @@ class DeliveryAdmin extends Admin
             ->add('id')
             ->add('title')
             ->add('description')
-            ->add('price')
             ->add('priceCurrency')
+            ->add('weights')
         ;
     }
 }

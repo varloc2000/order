@@ -32,11 +32,6 @@ class Delivery
     protected $description;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    protected $price;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Insider\CurrencyBundle\Entity\Currency")
      */
     protected $priceCurrency;
@@ -49,6 +44,31 @@ class Delivery
     public function __construct()
     {
         $this->weights = new ArrayCollection();
+    }
+
+    public function getPriceByWeight($orderWeight)
+    {
+        /** @var DeliveryWeightPrice $deliveryWeightPrice */
+        foreach ($this->weights as $deliveryWeightPrice) {
+            $weight = $deliveryWeightPrice->getWeight();
+            // For custom weights cannot decide price by order weight
+            if ($weight->isCustom()) {
+                continue;
+            }
+
+            if (
+                ($weight->getMinless()
+                    || (!$weight->getMinless() && $weight->getMinWeight() <= $orderWeight)
+                )
+                && ($weight->getMaxless()
+                    || (!$weight->getMaxless() && $weight->getMaxWeight() > $orderWeight)
+                )
+            ) {
+                return $deliveryWeightPrice->getPrice();
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -81,22 +101,6 @@ class Delivery
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
     }
 
     /**

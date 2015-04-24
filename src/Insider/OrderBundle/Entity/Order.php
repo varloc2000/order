@@ -103,6 +103,11 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     */
+    protected $weight = 0;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
      * @Assert\NotBlank()
      */
     protected $price;
@@ -241,7 +246,7 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getChinaPrice()
     {
-        return $this->chinaPrice;
+        return round($this->chinaPrice * $this->chinaPriceCurrency->getCourse(), 2);
     }
 
     /**
@@ -249,7 +254,15 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getChinaPriceInOrderCurrency()
     {
-        return round($this->chinaPrice / $this->chinaPriceCurrency->getCourse(), 2);
+        return $this->chinaPrice;
+    }
+
+    /**
+     * @param $chinaPrice
+     */
+    public function setChinaPriceInOrderCurrency($chinaPrice)
+    {
+        $this->chinaPrice = $chinaPrice;
     }
 
     /**
@@ -257,7 +270,7 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getChinaPriceByCurrency(Currency $currency)
     {
-        return round($this->chinaPrice / $currency->getCourse(), 2);
+        return round($this->getChinaPrice() / $currency->getCourse(), 2);
     }
 
     /**
@@ -433,7 +446,7 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getPrice()
     {
-        return $this->price;
+        return round($this->price * $this->priceCurrency->getCourse(), 2);
     }
 
     /**
@@ -441,7 +454,15 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getPriceInOrderCurrency()
     {
-        return round($this->price / $this->priceCurrency->getCourse(), 2);
+        return $this->price;
+    }
+
+    /**
+     * @param $price
+     */
+    public function setPriceInOrderCurrency($price)
+    {
+        $this->price = $price;
     }
 
     /**
@@ -449,7 +470,7 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
      */
     public function getPriceByCurrency(Currency $currency)
     {
-        return round($this->price / $currency->getCourse(), 2);
+        return round($this->getPrice() / $currency->getCourse(), 2);
     }
 
     /**
@@ -586,6 +607,22 @@ class Order implements SoftDeleteInterface, UserInterface, CdnUploadableInterfac
     public function setUser(User $user = null)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param mixed $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
     }
 
     public function __toString()
