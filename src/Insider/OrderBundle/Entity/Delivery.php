@@ -22,7 +22,7 @@ class Delivery
     protected $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
      */
     protected $title;
 
@@ -154,7 +154,7 @@ class Delivery
     /**
      * @param Weight $weight
      */
-    public function addWeights(Weight $weight)
+    public function addWeights(DeliveryWeightPrice $weight)
     {
         $this->weights->add($weight);
     }

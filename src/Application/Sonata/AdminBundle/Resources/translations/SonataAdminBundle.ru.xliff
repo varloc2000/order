@@ -34,6 +34,10 @@
                 <source>breadcrumb.link_delivery_list</source>
                 <target>Список вариантов доставки</target>
             </trans-unit>
+            <trans-unit id="breadcrumb.link_delivery_weight_price_list">
+                <source>breadcrumb.link_delivery_weight_price_list</source>
+                <target>Доставка + Вес = цена</target>
+            </trans-unit>
             <trans-unit id="list.label_title_currency">
                 <source>list.label_title_currency</source>
                 <target>Валюта</target>

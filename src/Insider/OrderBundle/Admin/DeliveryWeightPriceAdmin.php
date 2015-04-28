@@ -13,8 +13,12 @@ class DeliveryWeightPriceAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('weight')
-            ->add('price')
+            ->add('weight', null, array(
+                'required' => true,
+            ))
+            ->add('price', null, array(
+                'required' => true,
+            ))
         ;
     }
 }

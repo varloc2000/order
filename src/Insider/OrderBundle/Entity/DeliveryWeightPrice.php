@@ -16,12 +16,17 @@ class DeliveryWeightPrice
 {
     /**
      * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Insider\OrderBundle\Entity\Delivery", inversedBy="weights")
      */
     protected $delivery;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Insider\OrderBundle\Entity\Weight", inversedBy="deliveries")
      */
     protected $weight;
@@ -36,7 +41,7 @@ class DeliveryWeightPrice
      * @param Weight $weight
      * @param int $price
      */
-    public function __construct(Delivery $delivery, Weight $weight, $price = 0)
+    public function __construct(Delivery $delivery = null, Weight $weight = null, $price = 0)
     {
         $this->delivery = $delivery;
         $this->weight = $weight;

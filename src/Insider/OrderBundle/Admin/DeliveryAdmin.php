@@ -2,6 +2,7 @@
 
 namespace Insider\OrderBundle\Admin;
 
+use Insider\OrderBundle\Entity\DeliveryWeightPrice;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -22,7 +23,6 @@ class DeliveryAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('title')
-//            ->add('price')
             ->add('priceCurrency')
         ;
     }
@@ -35,7 +35,6 @@ class DeliveryAdmin extends Admin
         $listMapper
             ->add('id')
             ->add('title')
-//            ->add('price', null, array('template' => 'SonataAdminBundle:CRUD:list_price.html.twig'))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -54,18 +53,18 @@ class DeliveryAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('description')
-            ->add('priceCurrency')
+            ->add('priceCurrency', null, array(
+                'required' => true,
+            ))
             ->add('weights', 'sonata_type_collection', array(
                 'type_options' => array(
                     'delete' => true,
-                ),
-                'btn_catalogue' => true,
+                    'required' => false,
+                )
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table',
                 'sortable' => 'position',
-                'btn_add' => true,
-                'btn_delete' => true,
             ))
         ;
     }
@@ -80,7 +79,33 @@ class DeliveryAdmin extends Admin
             ->add('title')
             ->add('description')
             ->add('priceCurrency')
-            ->add('weights')
+            ->add('weights', null, array(
+                'editable' => false,
+            ))
         ;
+    }
+
+    /**
+     * @param mixed $object
+     * @return mixed|void
+     */
+    public function prePersist($object)
+    {
+        /** @var DeliveryWeightPrice $deliveryWeight */
+        foreach ($object->getWeights() as $deliveryWeight) {
+            $deliveryWeight->setDelivery($object);
+        }
+    }
+
+    /**
+     * @param mixed $object
+     * @return mixed|void
+     */
+    public function preUpdate($object)
+    {
+        /** @var DeliveryWeightPrice $deliveryWeight */
+        foreach ($object->getWeights() as $deliveryWeight) {
+            $deliveryWeight->setDelivery($object);
+        }
     }
 }
