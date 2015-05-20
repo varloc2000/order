@@ -1,0 +1,13 @@
+.checked-order-summary {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    left: 50%;
+    margin-left: -200px;
+
+    min-width: 300px;
+    min-height: 40px;
+}
+.checked-order-summary.shown {
+    display: inline-block;
+}

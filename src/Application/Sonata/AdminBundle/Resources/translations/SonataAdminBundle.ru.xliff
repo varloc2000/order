@@ -2,6 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="SonataAdminBundle.en.xliff" >
         <body>
+            <trans-unit id="order.checked_count">
+                <source>order.checked_count</source>
+                <target>Выделено заказов</target>
+            </trans-unit>
+            <trans-unit id="order.checked_amount">
+                <source>order.checked_amount</source>
+                <target>Стоимость выделенных</target>
+            </trans-unit>
+
             <trans-unit id="order_action_0">
                 <source>order_action_0</source>
                 <target>Новый заказ</target>

@@ -17,7 +17,7 @@
     {% endif %}
     <hr/>
     {% set fullPrice = object.getPrice + object.getChinaPrice + deliveryPrice %}
-    <p>
+    <p class="order-price-total" data-total="{{ userCurency.convert(fullPrice) }}">
         Общая сумма: {{ userCurency.convert(fullPrice) }}&nbsp;<b>{{ userCurencySign }}</b>
     </p>
 {% endblock %}
