@@ -64,7 +64,7 @@ class UserAdmin extends Admin
 
         $formMapper
             ->with('User.Main', array(
-                'class' => 'col-md-4',
+                'class' => 'col-md-5',
             ))
                 ->add('username')
                 ->add('email')
@@ -81,7 +81,7 @@ class UserAdmin extends Admin
                 ))
             ->end()
             ->with('Profile.Additional', array(
-                'class' => 'col-md-8',
+                'class' => 'col-md-7',
             ))
                 ->add('firstName')
                 ->add('lastName')
@@ -97,6 +97,22 @@ class UserAdmin extends Admin
                 ))
             ->end()
         ;
+
+        // Set help for promo field with link to registration with promo code
+        $formMapper->setHelps(array(
+            'promo' => $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('router')
+                ->generate(
+                    'fos_user_registration_register',
+                    array(
+                        'promo' => $this->getSubject()->getPromo(),
+                    ),
+                    true
+                ),
+            )
+        );
     }
 
     /**

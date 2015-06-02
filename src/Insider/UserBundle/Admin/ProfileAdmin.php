@@ -42,7 +42,7 @@ class ProfileAdmin extends UserAdmin
 
         $formMapper
             ->with('User.Main', array(
-                'class' => 'col-md-4',
+                'class' => 'col-md-5',
             ))
                 ->add('username', null, array(
                     'attr' => array('readonly' => 'readonly'),
@@ -55,7 +55,7 @@ class ProfileAdmin extends UserAdmin
                 ->remove('status')
             ->end()
             ->with('Profile.Additional', array(
-                'class' => 'col-md-8',
+                'class' => 'col-md-7',
                 'description' => 'Чтобы было легче с вами связаться, пожалуйста, укажите личные данные:',
             ))
             ->end()
