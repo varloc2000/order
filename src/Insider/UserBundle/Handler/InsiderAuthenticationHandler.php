@@ -56,16 +56,6 @@ class InsiderAuthenticationHandler implements AuthenticationFailureHandlerInterf
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        $redirect = $request->get('_redirect_path');
-
-        if ($redirect) {
-            return new RedirectResponse($redirect);
-        }
-
-        if($this->container->get('security.context')->isGranted('ROLE_SONATA_ADMIN')){
-            return new RedirectResponse($this->container->get('router')->generate('sonata_admin_dashboard'));
-        }
-
-        return new RedirectResponse($this->container->get('router')->generate('all_by_frontend_profile_show'));
+        return new RedirectResponse($this->container->get('router')->generate('sonata_admin_dashboard'));
     }
 }

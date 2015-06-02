@@ -70,9 +70,21 @@ services:
         tags:
             - {name: validator.constraint_validator, alias: validator_uniquelogin}
 
+    insider_user.promo_exist_validator:
+        class: Insider\UserBundle\Validator\Constraints\PromoExistValidator
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - {name: validator.constraint_validator, alias: validator_promoexist}
+
     insider_user.authentication.handler:
          class: Insider\UserBundle\Handler\InsiderAuthenticationHandler
          arguments: [@service_container]
 
     security.user_checker:
          class: %security.user_checker.class%
+
+    insider_user.registration_listener:
+        class: Insider\UserBundle\EventListener\RegistrationListener
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: kernel.event_subscriber }

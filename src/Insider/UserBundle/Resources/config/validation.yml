@@ -1,23 +1,18 @@
 Insider\UserBundle\Entity\User:
     constraints:
-      - Insider\UserBundle\Validator\Constraints\UniqueLogin: ~
-    properties:
-        email:
-            - Email:
-                message: 'Неверный формат email.'
-
-FOS\UserBundle\Model\User:
-    constraints:
-         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        - Insider\UserBundle\Validator\Constraints\UniqueLogin:
+            groups: [registration]
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
             fields: [email]
             message: 'Такой email уже используется!'
-            groups: [InsiderRegistration]
-         - Insider\UserBundle\Validator\Constraints\UniqueLogin:
-             groups: [Registration]
+            groups: [registration]
     properties:
+        promo:
+            - Insider\UserBundle\Validator\Constraints\PromoExist:
+                groups: [registration]
         email:
             - NotBlank:
-                groups: [InsiderRegistration]
+                groups: [registration]
             - Email:
                 message: 'Неверный формат email.'
-                groups: [Registration]
+                groups: [registration]

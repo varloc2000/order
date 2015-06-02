@@ -5,8 +5,6 @@ namespace Insider\UserBundle\Security;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\DisabledException;
-use Symfony\Component\Security\Core\Exception\LockedException;
 use Insider\UserBundle\Entity\User;
 use Insider\UserBundle\Exception\RegistrationException;
 use Insider\UserBundle\Exception\EmailExistException;

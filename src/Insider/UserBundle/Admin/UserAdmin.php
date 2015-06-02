@@ -121,7 +121,6 @@ class UserAdmin extends Admin
         $object->setPromo($this->generatePromoCode());
     }
 
-
     /**
      * @return string
      */

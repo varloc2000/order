@@ -38,7 +38,7 @@ class User extends BaseUser implements SoftDeleteInterface
      *   @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      * })
      */
-    private $role;
+    private $role = Role::ROLE_CLIENT;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -79,6 +79,11 @@ class User extends BaseUser implements SoftDeleteInterface
      * @ORM\Column(type="string", nullable=true)
      */
     protected $promo;
+
+    /**
+     * @var string
+     */
+    protected $refererCode;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -182,30 +187,37 @@ class User extends BaseUser implements SoftDeleteInterface
 
     /**
      * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setDefaultRoles();
+        $this->setDefaults();
+        $this->generatePromoCode();
+    }
+
+    /**
      * @ORM\PreUpdate
      */
-    public function setAdminRole()
+    public function preUpdate()
     {
-        if ( !empty($this->role) )
-        {
+        $this->setDefaultRoles();
+    }
+
+    private function setDefaults()
+    {
+//        $this->role = Role::ROLE_CLIENT;
+    }
+
+    private function setDefaultRoles()
+    {
+        if (!empty($this->role)) {
             $this->setRoles(array($this->role->getParentRoleKeyName()));
 
-            foreach( $this->role->getAccessByModules() as $accessByModule )
-            {
-                $this->addRole(implode("_", array("ROLE",$accessByModule->getModule()->getCode(),$accessByModule->getAccess()->getCode())));
+            foreach($this->role->getAccessByModules() as $accessByModule) {
+                $this->addRole(implode("_", array("ROLE", $accessByModule->getModule()->getCode(), $accessByModule->getAccess()->getCode())));
             }
-        }
-        else
+        } else
             $this->setRoles(array());
-
-        /*if ( $this->enabled && $this->status == self::STATUS_REGISTERED )
-            $this->status = self::STATUS_CHECKED;
-
-        if ( $this->status == self::STATUS_BLOCKED && $this->enabled )
-            $this->enabled = false;
-
-        if ( !$this->enabled && $this->status == self::STATUS_CHECKED )
-            $this->enabled = true;*/
     }
 
     /**
@@ -633,5 +645,36 @@ class User extends BaseUser implements SoftDeleteInterface
     public function setRefill(Refill $refill)
     {
         $this->refill = $refill;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRefererCode()
+    {
+        return $this->refererCode;
+    }
+
+    /**
+     * @param mixed $refererCode
+     */
+    public function setRefererCode($refererCode)
+    {
+        $this->refererCode = $refererCode;
+    }
+
+    /**
+     * @return string
+     */
+    protected function generatePromoCode()
+    {
+        $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $res = "";
+
+        for ($i = 0; $i < 10; $i++) {
+            $res .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+
+        $this->promo = $res;
     }
 }

@@ -4,12 +4,14 @@
 
 {% block fos_user_content %}
     <div id="container">
-        <div class="{{ full }} article">
+        <div class="article">
             <div class="block-content-wrapper">
                 <div class="block-content text-center">
-                    <h1>Регистрация</h1>
-                    <div class="form-group">
-                        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                    <div class="login">
+                        <h1>Регистрация</h1>
+                        <div class="form-group">
+                            <p>Проверте email. На него было отправлено письмо для подтверждения регистрации.</p>
+                        </div>
                     </div>
                 </div>
             </div>
